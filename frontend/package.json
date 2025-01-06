@@ -34,7 +34,6 @@
     "framer-motion",
     "react-hot-toast",
     "saifullanju"
-
   ],
   "dependencies": {
     "@reduxjs/toolkit": "^2.4.0",

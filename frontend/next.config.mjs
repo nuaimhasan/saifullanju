@@ -4,7 +4,6 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "api.saifullanju.com",
-        pathname: "/**",
       },
     ],
   },
