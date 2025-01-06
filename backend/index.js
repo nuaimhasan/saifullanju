@@ -19,13 +19,13 @@ mongoose.connect(process.env.DB_URL).then(() => {
 // API Routes
 app.use("/api", apiRoutes);
 
+app.get("/", (req, res) => {
+  res.send(`Server is Running on port ${port}`);
+});
+
 // not found api
 app.use("*", (req, res) => {
   res.send({ message: "API not found" });
-});
-
-app.get("/", (req, res) => {
-  res.send(`Server is Running on port ${port}`);
 });
 
 app.listen(port, () => {
