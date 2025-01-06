@@ -1,0 +1,6 @@
+.service_stack_card:nth-child(odd) .card_content {
+  background: var(--primary);
+}
+.service_stack_card:nth-child(even) .card_content {
+  background: var(--secondary);
+}

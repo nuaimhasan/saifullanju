@@ -1,0 +1,37 @@
+.footer_wrap {
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 640px) {
+  .footer_wrap {
+    border-radius: 50px 0px 0px 0px;
+  }
+}
+
+.social_icons {
+  background-image: linear-gradient(
+    to right top,
+    #053f3e,
+    #085958,
+    #08605f,
+    #128480,
+    #189b95,
+    #1ca19a,
+    #189690
+  );
+
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s;
+  transform: translateY(0);
+}
+
+.social_icons:hover {
+  transform: translateY(-3px);
+}

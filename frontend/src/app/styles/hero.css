@@ -1,0 +1,69 @@
+.hero_wrap {
+  background-image: linear-gradient(
+    to right top,
+    #0b504f,
+    #0b504f,
+    #095c5b,
+    #0b5e5c,
+    #0f6b6a,
+    #0c5f5d,
+    #066261
+  );
+  color: #fff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.hero_img {
+  border: 3px solid #fff;
+  border-radius: 50%;
+  position: relative;
+  margin: auto;
+}
+
+/* @keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40%/50% 60% 30% 60%;
+  }
+
+  100% {
+    border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
+  }
+} */
+
+.about_img {
+  border: 3px solid var(--secondary) !important;
+}
+
+.social_list a {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.social_list a:hover {
+  background-color: #fff;
+  color: var(--secondary);
+}
+
+.social_list:hover > :not(:hover) {
+  filter: blur(1px);
+  opacity: 0.6;
+}
+
+.about .social_list a:hover {
+  background-color: var(--secondary);
+  color: #fff;
+}

@@ -1,0 +1,193 @@
+.admin_sidebar {
+  height: 100vh;
+  position: fixed;
+  width: 260px;
+  left: -0%;
+  top: 0;
+  padding: 0px 15px;
+  background: #fff;
+}
+
+.sidebar_menu {
+  height: 90%;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.user_sidebar_menu {
+  height: 100% !important;
+}
+
+.sidebar_menu::-webkit-scrollbar {
+  display: none;
+}
+
+.admin_content {
+  width: calc(100% - 260px);
+  background: #ecf0f180;
+  min-height: 100vh;
+  position: relative;
+  left: 260px;
+}
+
+#admin[data-theme="dark"] .admin_content {
+  background: #1a1a1ae6;
+}
+
+.admin_siderbar_item ul li a,
+.admin_siderbar_item ul li button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  color: #5d5d5d;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+#admin[data-theme="dark"] .admin_siderbar_item ul li a,
+#admin[data-theme="dark"] .admin_siderbar_item ul li button {
+  color: #ddd;
+}
+
+.admin_siderbar_item ul li button div {
+  width: calc(100% - 33px);
+}
+
+.admin_siderbar_item ul li a:hover,
+.admin_siderbar_item ul li button:hover {
+  color: var(--secondary);
+  background: #0e467710;
+}
+
+.admin_siderbar_item ul li a i,
+.admin_siderbar_item ul li button i {
+  font-size: 18px;
+}
+
+.admin_siderbar_item .active {
+  color: var(--secondary);
+  background: #0e46771b;
+}
+
+.admin_siderbar_item .dropdown {
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.admin_siderbar_item .dropdown_show {
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.admin_siderbar_item .dropdown ul li a,
+.admin_siderbar_item .dropdown ul li button {
+  padding: 8px 8px 8px 55px;
+  position: relative;
+  color: #747474;
+}
+
+.admin_siderbar_item .dropdown ul li a:hover,
+.admin_siderbar_item .dropdown ul li button:hover {
+  color: var(--primary);
+  box-shadow: none !important;
+}
+
+.admin_siderbar_item .dropdown ul li a.active::before {
+  width: 8px;
+  height: 8px;
+}
+
+.admin_siderbar_item .dropdown > ul > li > a::before,
+.admin_siderbar_item .dropdown > ul > li > button::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #6d6d6d;
+  border-radius: 50%;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.admin_siderbar_item .dropdown ul li button.active {
+  color: var(--primary);
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.admin_siderbar_item .dropdown ul li a.active {
+  color: var(--primary);
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.admin_siderbar_item .subDropdown ul li a {
+  padding: 8px 8px 8px 65px;
+  color: #898989;
+}
+
+.admin_siderbar_item .subDropdown {
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.admin_siderbar_item .subDropdown_show {
+  max-height: 300px;
+  transition: all 0.3s ease;
+}
+
+@media only screen and (max-width: 1024px) {
+  .admin_sidebar {
+    transform: translateX(-100%);
+    z-index: 9999;
+    left: -1%;
+    transition: all 0.3s ease;
+  }
+
+  .admin_sidebar_show {
+    transform: translateX(0%);
+  }
+
+  .admin_content {
+    width: 100%;
+    left: 0;
+    padding: 10px;
+  }
+}
+
+.h400 .jodit-wysiwyg {
+  height: 400px !important;
+}
+
+.jodit-status-bar {
+  display: none !important;
+}
+
+/*--------------------table------------------------ */
+.border_table {
+  @apply w-full bg-base-100 text-[15px] text-gray-500;
+}
+
+.border_table thead {
+  @apply border-b;
+}
+
+.border_table thead th {
+  @apply bg-transparent px-5 py-3 text-start text-sm font-medium;
+}
+
+.border_table tbody tr {
+  @apply border-b;
+}
+
+.border_table tbody tr:last-child {
+  @apply border-b-0;
+}
+
+.border_table tbody td {
+  @apply px-5 py-2 text-start text-sm font-normal;
+}
