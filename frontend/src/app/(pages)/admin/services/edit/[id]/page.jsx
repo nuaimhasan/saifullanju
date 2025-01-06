@@ -30,7 +30,6 @@ export default function EditService() {
   const handleEditService = async (e) => {
     e.preventDefault();
     const title = e.target.title.value;
-    const description = e.target.description.value;
 
     const formData = new FormData();
     formData.append("title", title);

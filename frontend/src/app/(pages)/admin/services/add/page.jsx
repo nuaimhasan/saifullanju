@@ -19,7 +19,6 @@ export default function AddService() {
   const handleAddService = async (e) => {
     e.preventDefault();
     const title = e.target.title.value;
-    const description = e.target.description.value;
 
     if (image?.length <= 0) {
       return toast.error("Image is required");
