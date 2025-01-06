@@ -1,3 +1,4 @@
+export const revalidate = 0;
 import "@/app/styles/globals.css";
 import Providers from "@/Redux/Providers/Providers";
 import { Toaster } from "react-hot-toast";
