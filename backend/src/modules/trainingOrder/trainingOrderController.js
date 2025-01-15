@@ -37,12 +37,6 @@ exports.createOrder = async (req, res) => {
 
     const result = await Model.create(newData);
 
-    // send mail to user
-    if (result?.user?.email) {
-      const { email, name } = result?.user;
-      sendTrainingTicket(email, name, training, result);
-    }
-
     res.json({
       success: true,
       message: "Order created successfully",
@@ -113,6 +107,71 @@ exports.getOrderById = async (req, res) => {
     res.json({
       success: true,
       message: "Training Order get successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+      error,
+    });
+  }
+};
+
+exports.updateOrderStatus = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body;
+
+  try {
+    const isExist = await Model.findById(id).populate("training");
+    if (!isExist) {
+      return res.json({
+        success: false,
+        message: "Training Order not found",
+      });
+    }
+
+    const result = await Model.findByIdAndUpdate(id, { status }, { new: true });
+
+    const { email, name } = isExist?.user;
+    const training = isExist?.training;
+    const order = isExist;
+
+    if (status === "approved" && result?._id && email) {
+      sendTrainingTicket(email, name, training, order);
+    }
+
+    res.json({
+      success: true,
+      message: "Training Order status updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+      error,
+    });
+  }
+};
+
+exports.deleteOrder = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const isExist = await Model.findById(id).populate("training");
+    if (!isExist) {
+      return res.json({
+        success: false,
+        message: "Training Order not found",
+      });
+    }
+
+    const result = await Model.findByIdAndDelete(id);
+
+    res.json({
+      success: true,
+      message: "Training Order deleted successfully",
       data: result,
     });
   } catch (error) {

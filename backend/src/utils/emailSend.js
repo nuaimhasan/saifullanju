@@ -83,7 +83,7 @@ exports.sendTrainingTicket = async (userMail, userName, training, order) => {
         <ul>
             <li><strong>Training Program:</strong> ${training?.title}</li>
             <li><strong>Ticket Number:</strong> ${order?.ticketNumber}</li>
-            <li><strong>Payment Amount:</strong> ৳${order?.paymentAmount}</li>
+            <li><strong>Payment Amount:</strong> ৳${order?.payment?.amount}</li>
             <li><strong>Order Date:</strong> ${training?.startDate}</li>
             <li><strong>Order Address:</strong> ${training?.address}</li>
         </ul>

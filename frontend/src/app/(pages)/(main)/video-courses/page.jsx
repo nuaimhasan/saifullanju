@@ -14,12 +14,12 @@ export default function VideoCourses() {
             height={100}
           />
 
-          <div className="mt-2">
+          <div className="mt-2 text-center">
             <h2 className="text-4xl font-extrabold text-secondary">
               Upcoming Video Course
             </h2>
 
-            <p className="mt-2 text-center text-neutral-content tetx-sm">
+            <p className="mt-2 text-neutral-content tetx-sm">
               We are going to launch our video courses very soon.
             </p>
 

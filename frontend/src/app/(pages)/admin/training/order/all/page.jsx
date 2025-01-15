@@ -1,11 +1,17 @@
 "use client";
+import { AiOutlineDelete } from "react-icons/ai";
 import { BsFiletypeXlsx } from "react-icons/bs";
 import moment from "moment";
-import { useGetAllTrainingOrdersQuery } from "@/Redux/api/training/trainingOrderApi";
+import {
+  useDeleteTrainingOrderMutation,
+  useGetAllTrainingOrdersQuery,
+  useUpdateStatusMutation,
+} from "@/Redux/api/training/trainingOrderApi";
 import Pagination from "@/app/components/Pagination/Pagination";
 import { useState } from "react";
 import * as XLSX from "xlsx";
 import { useGetAllTrainingQuery } from "@/Redux/api/training/trainingApi";
+import toast from "react-hot-toast";
 
 export default function OrderTraining() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,6 +28,33 @@ export default function OrderTraining() {
 
   const { data: trainingData } = useGetAllTrainingQuery();
   const trainings = trainingData?.data;
+
+  const [updateStatus] = useUpdateStatusMutation();
+  const [deleteTrainingOrder] = useDeleteTrainingOrderMutation();
+
+  const handleDeleteOrder = async (id) => {
+    const isConfirmed = confirm("Are you sure you want to delete order?");
+    if (!isConfirmed) return;
+    const res = await deleteTrainingOrder(id);
+    if (res?.data?.success) {
+      toast.success("Training Order delete successfully");
+    } else {
+      toast.error(res?.data?.message || "Failed to update status");
+      console.log(res);
+    }
+  };
+
+  const handleUpdateStatus = async (id, status) => {
+    const isConfirmed = confirm("Are you sure you want to update status?");
+    if (!isConfirmed) return;
+    const res = await updateStatus({ id, status });
+    if (res?.data?.success) {
+      toast.success("Status updated successfully");
+    } else {
+      toast.error(res?.data?.message || "Failed to update status");
+      console.log(res);
+    }
+  };
 
   const handleDownloadExcel = async () => {
     setLoading(true);
@@ -40,9 +73,11 @@ export default function OrderTraining() {
       "User Email": order.user.email,
       "User Phone": order.user.phone,
       "Training Title": order.training.title,
-      "Training Date": order.startDate, // Format date as needed
-      Amount: order.paymentAmount,
-      "Payment Method": order.paymentMethod,
+      "Training Date": order.startDate,
+      Amount: order.payment?.amount,
+      "Payment Method": order?.payment?.paymentMethod,
+      "Transaction ID": order?.payment?.transactionId,
+      status: order.status,
     }));
 
     // Create a worksheet
@@ -101,36 +136,67 @@ export default function OrderTraining() {
               <th>User</th>
               <th>Training</th>
               <th>Payment</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {trainingOrders?.map((order, i) => (
               <tr key={order?._id}>
-                <td>
-                  {
-                    // Calculate the serial number
-                    (currentPage - 1) * limit + i + 1
-                  }
-                </td>
+                <td>{(currentPage - 1) * limit + i + 1}</td>
                 <td>{order?.ticketNumber}</td>
                 <td>
                   <p>{order?.user?.name}</p>
                   <p>{order?.user?.email}</p>
                   <p>{order?.user?.phone}</p>
                 </td>
-                <td>
+                <td className="w-[20%]">
                   <p>{order?.training?.title}</p>
-                  <p>{moment(order?.startDate).format("DD MMM YYYY")}</p>
-                  <p>{moment(order?.time, "HH:mm").format("h:mm A")}</p>
+                  <p>
+                    {moment(order?.training?.startDate).format("DD MMM YYYY")}
+                  </p>
+                  <p>
+                    {moment(order?.training?.time, "HH:mm").format("h:mm A")}
+                  </p>
                 </td>
                 <td>
-                  <p>{order?.paymentMethod}</p>
+                  <p className="whitespace-nowrap">
+                    Method: {order?.payment?.paymentMethod}
+                  </p>
                   <p>
-                    ৳{" "}
+                    Amount: ৳{" "}
                     {new Intl.NumberFormat("en-EN", {
                       minimumFractionDigits: 0,
-                    }).format(order?.paymentAmount)}
+                    }).format(order?.payment?.amount)}
                   </p>
+                  <p>T-ID: {order?.payment?.accountNb}</p>
+                  <p>Account Nb: {order?.payment?.transactionId}</p>
+                  {order?.payment?.date && (
+                    <p>
+                      Date: {moment(order?.payment?.date).format("DD MMM YYYY")}
+                    </p>
+                  )}
+                </td>
+                <td>
+                  <select
+                    onChange={(e) =>
+                      handleUpdateStatus(order?._id, e.target.value)
+                    }
+                    className={`text-sm ${
+                      order?.status == "pending"
+                        ? "text-yellow-500"
+                        : "text-green-500"
+                    }`}
+                    value={order?.status}
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="approved">Approved</option>
+                  </select>
+                </td>
+                <td>
+                  <button onClick={() => handleDeleteOrder(order?._id)}>
+                    <AiOutlineDelete className="text-red-500 text-xl" />
+                  </button>
                 </td>
               </tr>
             ))}

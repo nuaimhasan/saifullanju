@@ -18,8 +18,27 @@ export const trainingOrderApi = baseApi.injectEndpoints({
       }),
       providesTags: ["trainingOrder"],
     }),
+    updateStatus: builder.mutation({
+      query: ({ id, status }) => ({
+        url: `/api/trainingOrder/update-status/${id}`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["trainingOrder"],
+    }),
+    deleteTrainingOrder: builder.mutation({
+      query: (id) => ({
+        url: `/api/trainingOrder/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["trainingOrder"],
+    }),
   }),
 });
 
-export const { useAddTrainingOrderMutation, useGetAllTrainingOrdersQuery } =
-  trainingOrderApi;
+export const {
+  useAddTrainingOrderMutation,
+  useGetAllTrainingOrdersQuery,
+  useUpdateStatusMutation,
+  useDeleteTrainingOrderMutation,
+} = trainingOrderApi;

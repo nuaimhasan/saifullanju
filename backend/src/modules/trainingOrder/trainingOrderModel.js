@@ -30,13 +30,32 @@ const TrainingOrderSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    paymentMethod: {
+    payment: {
+      paymentMethod: {
+        type: String,
+        required: true,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+      accountNb: {
+        type: String,
+        required: true,
+      },
+      transactionId: {
+        type: String,
+        required: true,
+      },
+      date: {
+        type: Date,
+      },
+    },
+    status: {
       type: String,
       required: true,
-    },
-    paymentAmount: {
-      type: Number,
-      required: true,
+      enum: ["pending", "approved"],
+      default: "pending",
     },
   },
   {
