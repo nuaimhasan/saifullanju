@@ -82,7 +82,7 @@ export default function page() {
     const res = await addTrainingOrder(data);
     if (res?.data?.success) {
       toast.success("Payment completed successfully");
-      router.push(`/training/download-ticket/${res?.data?.data?._id}`);
+      router.push(`/training/order/success/${res?.data?.data?._id}`);
     } else {
       toast.error(res?.data?.message || "Something went wrong");
       console.log(res);

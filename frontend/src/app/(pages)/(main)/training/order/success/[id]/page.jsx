@@ -3,11 +3,10 @@ import { useGetData } from "@/Hook/useGetData";
 import moment from "moment";
 import Link from "next/link";
 
-export default async function page({ params }) {
+export default async function SuccessTrainingOrder({ params }) {
   const { id } = await params;
-  const data = await useGetData(`/bookOrder/${id}`);
+  const data = await useGetData(`/trainingOrder/${id}`);
   const order = data?.data;
-
 
   return (
     <section className="flex justify-center items-center min-h-[80vh] py-5">
@@ -24,7 +23,7 @@ export default async function page({ params }) {
         <div className="mt-4 w-full bg-gray-100 text-neutral grid grid-cols-3 text-sm">
           <div className="border-r p-3">
             <h3 className="font-medium mb-1">Order Number</h3>
-            <p>INV-{order?.invoiceNumber}</p>
+            <p>{order?.ticketNumber}</p>
           </div>
           <div className="border-r p-3">
             <h3 className="font-medium mb-1">Date</h3>
@@ -32,7 +31,7 @@ export default async function page({ params }) {
           </div>
           <div className="p-3">
             <h3 className="font-medium mb-1">Payment</h3>
-            <p>{order?.totalAmount} BDT</p>
+            <p>{order?.payment?.amount} BDT</p>
           </div>
         </div>
 
@@ -43,49 +42,41 @@ export default async function page({ params }) {
             <table className="table">
               <thead>
                 <tr>
-                  <th>Product</th>
+                  <th>Training</th>
                   <th>Total</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    {order?.book?.title} * {order?.quantity}
-                  </td>
-                  <td>{order?.book?.price * order?.quantity} BDT</td>
-                </tr>
-                <tr>
-                  <td>Shipping Charge</td>
-                  <td>{order?.shipping} BDT</td>
-                </tr>
-                <tr className="text-red-500">
-                  <td>Discount</td>
-                  <td>{order?.discount} BDT</td>
+                  <td>{order?.training?.title}</td>
+                  <td>{order?.training?.price} BDT</td>
                 </tr>
                 <tr className="text-primary font-semibold text-base">
                   <td>Total</td>
-                  <td>{order?.totalAmount} BDT</td>
+                  <td>{order?.training?.price} BDT</td>
+                </tr>
+                <tr>
+                  <td>Recived</td>
+                  <td>{order?.payment?.amount} BDT</td>
+                </tr>
+                <tr>
+                  <td>Due</td>
+                  <td>{order?.training?.price - order?.payment?.amount} BDT</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <div className="mt-1 w-full bg-gray-100 text-neutral p-3 text-sm">
-          <h3 className="font-medium text-base">Billing Address</h3>
-
-          <div className="mt-3">
-            <p>{order?.user?.name}</p>
-            <p>{order?.user?.email}</p>
-            <p>{order?.user?.phone}</p>
-            <p>{order?.user?.address}</p>
-            <p>{order?.user?.note}</p>
-          </div>
-        </div>
+        <p className="text-sm text-yellow-500 text-center mt-1">
+          [Your payment information is currently under verification. We will
+          update your payment status shortly and notify you with detailed
+          information via email.]
+        </p>
 
         <div className="flex justify-center items-center gap-3 text-[13px] mt-2">
-          <Link href="/books" className="primary_btn">
-            Continue Shopping
+          <Link href="/training" className="primary_btn">
+            More Training
           </Link>
           <Link
             href="/"
