@@ -29,7 +29,7 @@ export default function ChangePassword() {
       newPassword: password,
     };
 
-    const res = await updatePassword({ id, data });
+    const res = await updatePassword(data);
 
     if (res?.data?.success) {
       toast.success("Password update success");

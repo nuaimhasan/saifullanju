@@ -4,46 +4,49 @@ export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAdmins: builder.query({
       query: () => ({
-        url: "/api/admin/all",
+        url: "/api/user/all",
         method: "GET",
       }),
       providesTags: ["user"],
     }),
     deleteAdmin: builder.mutation({
       query: (id) => ({
-        url: `/api/admin/${id}`,
+        url: `/api/user/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["user"],
     }),
     addAdmin: builder.mutation({
       query: (info) => ({
-        url: `/api/admin/add`,
+        url: `/api/user/add`,
         method: "POST",
         body: info,
       }),
       invalidatesTags: ["user"],
     }),
     updateInfo: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/api/admin/updateInfo/${id}`,
-        method: "PUT",
+      query: (data) => ({
+        url: `/api/user/update/info`,
+        method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["user"],
     }),
     updatePassword: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/api/admin/updatePassword/${id}`,
-        method: "PUT",
+      query: (data) => ({
+        url: `/api/user/update/password`,
+        method: "PATCH",
         body: data,
       }),
+      invalidatesTags: ["user"],
     }),
     deleteAccount: builder.mutation({
       query: ({ id, data }) => ({
-        url: `/api/admin/deleteAccount/${id}`,
+        url: `/api/user/deleteAccount/${id}`,
         method: "DELETE",
         body: data,
       }),
+      invalidatesTags: ["user"],
     }),
   }),
 });

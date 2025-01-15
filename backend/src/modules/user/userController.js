@@ -181,3 +181,56 @@ exports.updateUserInfo = async (req, res) => {
     });
   }
 };
+
+exports.updatePassword = async (req, res) => {
+  const data = req?.body;
+  const { email } = req.user;
+
+  try {
+    const isExist = await User.findOne({ email });
+    if (!isExist) {
+      return res.json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(
+      data?.currentPassword,
+      isExist?.password
+    );
+
+    if (!isMatch) {
+      return res.json({
+        success: false,
+        message: "Current password does not match",
+      });
+    }
+    const id = isExist?._id;
+    const hash = await bcrypt.hash(data?.newPassword, 10);
+
+    const result = await User.findByIdAndUpdate(
+      id,
+      { password: hash },
+      { new: true }
+    );
+
+    if (!result) {
+      return res.json({
+        success: false,
+        message: "Something went wrong",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Password update success",
+      data: result,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error?.message,
+    });
+  }
+};

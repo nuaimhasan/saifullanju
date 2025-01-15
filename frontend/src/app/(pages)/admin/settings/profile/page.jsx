@@ -1,16 +1,11 @@
 "use client";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useUpdateInfoMutation } from "@/Redux/api/user/adminApi";
 
 export default function Profile() {
   const { loggedUser } = useSelector((store) => store.user);
   const id = loggedUser?.data?._id;
-
-  const router = useRouter();
-  const dispatch = useDispatch();
 
   const [updateInfo, { isLoading }] = useUpdateInfoMutation();
 
@@ -27,15 +22,10 @@ export default function Profile() {
       phone,
     };
 
-    const res = await updateInfo({ id, data });
+    const res = await updateInfo(data);
 
     if (res?.data?.success) {
       toast.success("Update success");
-      if (loggedUser?.data?.email != res?.data?.data?.email) {
-        localStorage.removeItem("token");
-        dispatch(userLoggedIn({ data: undefined }));
-        router.push("/login");
-      }
     } else {
       toast.error(res?.data?.message || "something went wrong!");
       console.log(res);
@@ -61,6 +51,7 @@ export default function Profile() {
               type="text"
               name="email"
               defaultValue={loggedUser?.data?.email}
+              disabled
             />
           </div>
 
