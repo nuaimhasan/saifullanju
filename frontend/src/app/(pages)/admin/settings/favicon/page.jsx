@@ -77,7 +77,7 @@ export default function Favicon() {
                 <div className={`${logos?.length > 0 && "mt-4"} `}>
                   {logos?.map((img, index) => (
                     <div key={index} className="image-item relative">
-                      <img src={img["data_url"]} alt="" className="w-40" />
+                      <img src={img["data_url"]} alt="favicon" className="w-40" />
                       <div
                         onClick={() => onImageRemove(index)}
                         className="absolute right-0 top-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-secondary text-base-100"

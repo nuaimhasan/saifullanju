@@ -195,7 +195,7 @@ export default function BookCheckout() {
                   </div>
 
                   <div>
-                    <img src="/images/cod.png" alt="" className="h-6" />
+                    <img src="/images/cod.png" alt="cod" className="h-6" />
                   </div>
                 </li>
 
@@ -215,7 +215,7 @@ export default function BookCheckout() {
                     </div>
 
                     <div>
-                      <img src="/images/ssl.png" alt="" className="h-4" />
+                      <img src="/images/ssl.png" alt="ssl" className="h-4" />
                     </div>
                   </li> */}
               </ul>

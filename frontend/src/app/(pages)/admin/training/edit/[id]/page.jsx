@@ -203,7 +203,7 @@ export default function EditTraining() {
                           <div key={index} className="image-item relative">
                             <img
                               src={img["data_url"]}
-                              alt=""
+                              alt="training"
                               className="w-24"
                             />
                             <div

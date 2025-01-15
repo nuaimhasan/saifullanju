@@ -108,7 +108,7 @@ export default function EditBlog() {
                             <div key={index} className="image-item relative">
                               <img
                                 src={img["data_url"]}
-                                alt=""
+                                alt="blog"
                                 className="w-24"
                               />
                               <div

@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
         <meta property="og:title" content="Saiful Lanju" />
         <meta
           property="og:description"
-          content="Saiful Lanju:Inspiring People For Potential Developments"
+          content="Inspiring People For Potential Developments"
         />
         <meta property="og:image" content="/favicon.jpg" />
         <meta property="og:url" content="https://saifullanju.com" />
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         <meta name="twitter:title" content="Saiful Lanju" />
         <meta
           name="twitter:description"
-          content="Saiful Lanju:Inspiring People For Potential Developments"
+          content="Inspiring People For Potential Developments"
         />
         <meta name="twitter:image" content="/favicon.jpg" />
       </head>

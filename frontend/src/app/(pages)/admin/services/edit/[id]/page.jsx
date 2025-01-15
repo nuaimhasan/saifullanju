@@ -96,7 +96,7 @@ export default function EditService() {
                           <div key={index} className="image-item relative">
                             <img
                               src={img["data_url"]}
-                              alt=""
+                              alt="service"
                               className="w-24"
                             />
                             <div

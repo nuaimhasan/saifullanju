@@ -119,7 +119,7 @@ export default function AddTraining() {
                           <div key={index} className="image-item relative">
                             <img
                               src={img["data_url"]}
-                              alt=""
+                              alt="book"
                               className="w-24"
                             />
                             <div

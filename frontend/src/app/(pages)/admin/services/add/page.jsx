@@ -86,7 +86,7 @@ export default function AddService() {
                     <div className={`${image?.length > 0 && "mt-4"} `}>
                       {image?.map((img, index) => (
                         <div key={index} className="image-item relative">
-                          <img src={img["data_url"]} alt="" className="w-24" />
+                          <img src={img["data_url"]} alt="service" className="w-24" />
                           <div
                             onClick={() => onImageRemove(index)}
                             className="absolute right-0 top-0 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full bg-primary text-base-100"
