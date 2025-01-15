@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "@/Redux/api/user/userSlice";
+import Logo from "../../Logo/Logo";
 
 export default function Header() {
   const pathname = usePathname();
@@ -62,9 +63,7 @@ export default function Header() {
     >
       <div className="container">
         <div className="flex items-center justify-between">
-          <Link href="/">
-            <h2 className="text-3xl font-semibold">Saiful Lanju</h2>
-          </Link>
+          <Logo />
 
           <div>
             <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden">
@@ -128,22 +127,6 @@ export default function Header() {
                                 className="block px-4 py-2 hover:bg-gray-100"
                               >
                                 Dashboard
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href="/user/dashboard"
-                                className="block px-4 py-2 hover:bg-gray-100"
-                              >
-                                Settings
-                              </Link>
-                            </li>
-                            <li>
-                              <Link
-                                href="/user/dashboard"
-                                className="block px-4 py-2 hover:bg-gray-100"
-                              >
-                                Earnings
                               </Link>
                             </li>
                           </ul>

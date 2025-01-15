@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogout } from "@/Redux/api/user/userSlice";
 import Image from "next/image";
+import Logo from "../Logo/Logo";
 
 export default function UserHeader({ setSidebar }) {
   const [dropdown, setDropdown] = useState(false);
@@ -30,9 +31,7 @@ export default function UserHeader({ setSidebar }) {
             <HiOutlineMenuAlt2 className="text-xl" />
           </button>
 
-          <Link href="/" className="text-xl font-semibold text-primary">
-            <h2>Saiful Lanju</h2>
-          </Link>
+          <Logo />
         </div>
 
         <div className="relative">

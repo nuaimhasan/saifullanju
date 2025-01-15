@@ -3,6 +3,7 @@ import React from "react";
 import * as FaIcons from "react-icons/fa";
 import Link from "next/link";
 import { useGetData } from "@/Hook/useGetData";
+import Logo from "../../Logo/Logo";
 
 export default async function Footer() {
   const data = await useGetData("service/all");
@@ -16,9 +17,7 @@ export default async function Footer() {
       <div className="container">
         <div className="grid gap-12 sm:grid-cols-4">
           <div>
-            <Link href="/">
-              <h2 className="text-2xl font-semibold">Saiful Lanju</h2>
-            </Link>
+            <Logo />
           </div>
 
           <div>
