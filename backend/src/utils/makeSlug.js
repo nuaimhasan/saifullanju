@@ -1,10 +1,12 @@
 const makeSlug = (name) => {
   return name
-    .toLowerCase() // Convert to lowercase
-    .replace(/[^\w\s-]/g, "") // Remove special characters except words, space, and hyphen
-    .trim() // Trim spaces from both ends
-    .replace(/\s+/g, "-") // Replace spaces with hyphen
-    .replace(/-+/g, "-"); // Remove multiple hyphens
+    .toLowerCase() // ছোট হাতের অক্ষরে রূপান্তর
+    .normalize("NFD") // ইউনিকোড নরমালাইজেশন
+    .replace(/[\u0300-\u036f]/g, "") // ডায়াক্রিটিকস সরানো
+    .replace(/[^\w\s\u0980-\u09FF-]/g, "") // বিশেষ ক্যারেক্টার সরানো, বাংলা অক্ষর রাখার জন্য
+    .trim() // শুরুর এবং শেষের ফাঁকা জায়গা মুছে ফেলা
+    .replace(/\s+/g, "-") // ফাঁকা জায়গা হাইফেন দিয়ে বদলানো
+    .replace(/-+/g, "-"); // একাধিক হাইফেন সরানো
 };
 
 module.exports = makeSlug;

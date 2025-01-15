@@ -9,6 +9,8 @@ exports.add = async (req, res) => {
   const { title } = body;
   const image = req?.file?.filename;
 
+  const slug = makeSlug(title);
+
   try {
     if (!image) {
       return res.json({
@@ -19,7 +21,7 @@ exports.add = async (req, res) => {
 
     const newData = {
       ...body,
-      slug: makeSlug(title),
+      slug,
       image,
     };
 

@@ -5,6 +5,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "api.saifullanju.com",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
     ],
   },
   env: {
