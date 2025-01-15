@@ -3,9 +3,10 @@ import { baseApi } from "../baseApi.js";
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllAdmins: builder.query({
-      query: () => ({
+      query: (query) => ({
         url: "/api/user/admin/all",
         method: "GET",
+        params: query,
       }),
       providesTags: ["user"],
     }),

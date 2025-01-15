@@ -3,6 +3,8 @@ const User = require("./userModal");
 const { createJsonWebToken } = require("../../utils/jsonWebToken");
 const { verifyEmailSend } = require("../../utils/emailSend");
 const jwt = require("jsonwebtoken");
+const { calculatePagination } = require("../../utils/calculatePagination");
+const { pick } = require("../../utils/pick");
 const frontendURL = process.env.FRONTEND_URL;
 
 exports.processRegister = async (req, res) => {
@@ -236,12 +238,25 @@ exports.updatePassword = async (req, res) => {
 };
 
 exports.getAllUsers = async (req, res) => {
+  const paginationOptions = pick(req.query, ["page", "limit"]);
+  const { page, limit, skip } = calculatePagination(paginationOptions);
+
   try {
-    const users = await User.find({ role: "user" });
+    const users = await User.find({ role: "user" }).limit(limit).skip(skip);
+
+    const total = await User.countDocuments({ role: "user" });
+    const pages = Math.ceil(parseInt(total) / parseInt(limit));
+
     if (users) {
       res.status(200).json({
         success: true,
         message: "Users get success",
+        meta: {
+          total,
+          pages,
+          page,
+          limit,
+        },
         data: users,
       });
     } else {
@@ -260,12 +275,25 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.getAllAdmins = async (req, res) => {
+  const paginationOptions = pick(req.query, ["page", "limit"]);
+  const { page, limit, skip } = calculatePagination(paginationOptions);
+
   try {
-    const users = await User.find({ role: "admin" });
+    const users = await User.find({ role: "admin" }).limit(limit).skip(skip);
+
+    const total = await User.countDocuments({ role: "admin" });
+    const pages = Math.ceil(parseInt(total) / parseInt(limit));
+
     if (users) {
       res.status(200).json({
         success: true,
         message: "Users get success",
+        meta: {
+          total,
+          pages,
+          page,
+          limit,
+        },
         data: users,
       });
     } else {

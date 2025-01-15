@@ -1,8 +1,13 @@
 "use client";
+import Pagination from "@/app/components/Pagination/Pagination";
 import { useGetAllUsersQuery } from "@/Redux/api/user/studentApi";
+import { useState } from "react";
 
 export default function AllUser() {
-  const { data } = useGetAllUsersQuery();
+  const [currentPage, setCurrentPage] = useState(1);
+  let limit = 10;
+
+  const { data } = useGetAllUsersQuery({ page: currentPage, limit });
   const users = data?.data;
 
   return (
@@ -46,6 +51,14 @@ export default function AllUser() {
           </tbody>
         </table>
       </div>
+
+      {data?.meta?.pages > 1 && (
+        <Pagination
+          pages={data?.meta?.pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </section>
   );
 }

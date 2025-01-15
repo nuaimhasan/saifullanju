@@ -48,9 +48,10 @@ export const studentApi = baseApi.injectEndpoints({
     }),
 
     getAllUsers: builder.query({
-      query: () => ({
+      query: (query) => ({
         url: "/api/user/all",
         method: "GET",
+        params: query,
       }),
       providesTags: ["user"],
     }),

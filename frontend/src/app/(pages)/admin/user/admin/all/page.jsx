@@ -1,8 +1,13 @@
 "use client";
+import Pagination from "@/app/components/Pagination/Pagination";
 import { useGetAllAdminsQuery } from "@/Redux/api/user/adminApi";
+import { useState } from "react";
 
 export default function AllAdmin() {
-  const { data } = useGetAllAdminsQuery();
+  const [currentPage, setCurrentPage] = useState(1);
+  let limit = 10;
+
+  const { data } = useGetAllAdminsQuery({ page: currentPage, limit });
   const users = data?.data;
 
   return (
@@ -41,6 +46,14 @@ export default function AllAdmin() {
           </tbody>
         </table>
       </div>
+
+      {data?.meta?.pages > 1 && (
+        <Pagination
+          pages={data?.meta?.pages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </section>
   );
 }
