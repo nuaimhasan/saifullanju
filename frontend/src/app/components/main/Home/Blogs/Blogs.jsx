@@ -20,7 +20,7 @@ export default function Blogs() {
           <h2>See Our Latest Blog</h2>
         </div>
 
-        <div className="mt-5 grid items-start gap-5 sm:mt-8 sm:grid-cols-2">
+        <div className="mt-5 grid items-start gap-3 sm:mt-8 sm:grid-cols-2">
           <div data-aos="fade-right" className="rounded bg-base-100 shadow">
             <Link href={`/blogs/${blogs?.[0]?.slug}`}>
               <img
@@ -40,15 +40,25 @@ export default function Blogs() {
                   {blogs?.[0]?.title}
                 </h2>
               </Link>
-              <p className="text-xs text-neutral-content sm:text-sm">
+
+              <p className="mt-2 text-xs text-neutral-content sm:text-sm">
                 {plainText?.length > 100
                   ? plainText?.slice(0, 100) + "..."
                   : plainText}
               </p>
+
+              <div className="mt-3">
+                <Link
+                  href={`/blogs/${blogs?.[0]?.slug}`}
+                  className="primary_btn text-sm w-max"
+                >
+                  Read More
+                </Link>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3">
             {blog3?.map((blog) => {
               const plainText = blog?.description?.replace(/<[^>]+>/g, "");
               return (
@@ -57,11 +67,11 @@ export default function Blogs() {
                   data-aos="fade-down-left"
                   className="grid grid-cols-5 gap-2 rounded bg-base-100 shadow sm:gap-4"
                 >
-                  <Link href={`/blogs/${blog?.slug}`}>
+                  <Link href={`/blogs/${blog?.slug}`} className="col-span-2">
                     <img
                       src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/blogs/${blog?.image}`}
                       alt="blog"
-                      className="col-span-2 h-20 w-full rounded-l sm:h-32"
+                      className="col-span-2 h-20 w-full rounded-l sm:h-32 object-cover"
                       loading="lazy"
                     />
                   </Link>
@@ -71,13 +81,13 @@ export default function Blogs() {
                       href={`/blogs/${blog?.slug}`}
                       className="duration-200 hover:text-primary"
                     >
-                      <h2 className="text-sm font-semibold sm:text-lg">
+                      <h2 className="font-semibold sm:text-lg">
                         {blog?.title?.length > 50
                           ? blog?.title?.slice(0, 50) + "..."
                           : blog?.title}
                       </h2>
                     </Link>
-                    <p className="mt-2 hidden text-sm text-neutral-content sm:block">
+                    <p className="mt-2 text-sm text-neutral-content">
                       {plainText?.length > 100
                         ? plainText?.slice(0, 100) + "..."
                         : plainText}
