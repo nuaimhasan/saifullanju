@@ -234,3 +234,51 @@ exports.updatePassword = async (req, res) => {
     });
   }
 };
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({ role: "user" });
+    if (users) {
+      res.status(200).json({
+        success: true,
+        message: "Users get success",
+        data: users,
+      });
+    } else {
+      res.json({
+        success: false,
+        message: "Users not found",
+      });
+    }
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+      error,
+    });
+  }
+};
+
+exports.getAllAdmins = async (req, res) => {
+  try {
+    const users = await User.find({ role: "admin" });
+    if (users) {
+      res.status(200).json({
+        success: true,
+        message: "Users get success",
+        data: users,
+      });
+    } else {
+      res.json({
+        success: false,
+        message: "Users not found",
+      });
+    }
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+      error,
+    });
+  }
+};

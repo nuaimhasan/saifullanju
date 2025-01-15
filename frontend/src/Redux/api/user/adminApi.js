@@ -2,9 +2,9 @@ import { baseApi } from "../baseApi.js";
 
 export const adminApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAdmins: builder.query({
+    getAllAdmins: builder.query({
       query: () => ({
-        url: "/api/user/all",
+        url: "/api/user/admin/all",
         method: "GET",
       }),
       providesTags: ["user"],
@@ -52,7 +52,7 @@ export const adminApi = baseApi.injectEndpoints({
 });
 
 export const {
-  useGetAdminsQuery,
+  useGetAllAdminsQuery,
   useDeleteAdminMutation,
   useAddAdminMutation,
   useUpdateInfoMutation,

@@ -46,6 +46,14 @@ export const studentApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["user"],
     }),
+
+    getAllUsers: builder.query({
+      query: () => ({
+        url: "/api/user/all",
+        method: "GET",
+      }),
+      providesTags: ["user"],
+    }),
   }),
 });
 
@@ -53,4 +61,5 @@ export const {
   useStudentRegisterMutation,
   useLoginMutation,
   useStudentUpdateInfoMutation,
+  useGetAllUsersQuery,
 } = studentApi;

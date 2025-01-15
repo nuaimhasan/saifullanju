@@ -1,3 +1,5 @@
+import { FaUsers } from "react-icons/fa";
+import { MdAdminPanelSettings } from "react-icons/md";
 import { SiSkillshare } from "react-icons/si";
 import { AiOutlineContacts } from "react-icons/ai";
 import { FaRegUser, FaRegUserCircle } from "react-icons/fa";
@@ -105,6 +107,21 @@ const adminSidebarItems = [
         icon: <AiOutlineContacts />,
         title: "Contact",
         path: "/admin/pages/contact",
+      },
+    ],
+  },
+  {
+    title: "User",
+    menu: [
+      {
+        icon: <MdAdminPanelSettings />,
+        title: "Admins",
+        path: "/admin/user/admin/all",
+      },
+      {
+        icon: <FaUsers />,
+        title: "Users",
+        path: "/admin/user/all",
       },
     ],
   },
