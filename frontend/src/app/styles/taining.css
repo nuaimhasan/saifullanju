@@ -1,11 +1,21 @@
 .taining_card {
   border-radius: 4px;
   border: 1px solid #e0e0e0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   transition: all 0.3s ease;
 }
 
 .taining_card:hover {
   border-color: #333;
+}
+
+.taining_card:hover .title {
+  color: var(--primary);
 }
 
 .taining_card .enroll_btn i {

@@ -20,13 +20,13 @@ export default async function Services() {
               <Link
                 href={`/services/${service?._id}`}
                 key={index}
-                className="service_card grid items-start sm:grid-cols-3"
+                className="service_card sm:grid items-start sm:grid-cols-3 flex flex-col-reverse gap-2"
               >
                 <div className="sm:col-span-2">
-                  <h2 className="font-semibold text-secondary sm:text-2xl">
+                  <h2 className="font-semibold text-secondary text-xl sm:text-2xl">
                     {service?.title}
                   </h2>
-                  <p className="mt-3 text-sm text-neutral-content">
+                  <p className="mt-3 text-[13px] sm:text-sm text-neutral-content">
                     {description?.length > 200
                       ? description?.slice(0, 200) + "..."
                       : description}
@@ -37,7 +37,7 @@ export default async function Services() {
                   <img
                     src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${service?.icon}`}
                     alt="service"
-                    className="w-20 rounded sm:w-40"
+                    className="w-32 rounded sm:w-40"
                   />
                 </div>
               </Link>

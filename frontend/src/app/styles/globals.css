@@ -360,15 +360,6 @@ select {
   box-shadow: 10px 10px 20px 0px #000000ae;
 }
 
-@media only screen and (max-width: 640px) {
-  .service_card {
-    img {
-      transform: skewX(-6deg);
-      box-shadow: 10px 10px 20px 0px #000000ae;
-    }
-  }
-}
-
 .h400 .jodit-wysiwyg {
   height: 400px !important;
 }
