@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 export default function OrderTraining() {
   const [currentPage, setCurrentPage] = useState(1);
   let limit = 10;
+  const [status, setStatus] = useState("all");
   const [training, setTraining] = useState("all");
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +24,7 @@ export default function OrderTraining() {
     page: currentPage,
     limit,
     training,
+    status,
   });
   const trainingOrders = data?.data;
 
@@ -61,7 +63,7 @@ export default function OrderTraining() {
 
     // getData
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trainingOrder/all?training=${training}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/trainingOrder/all?training=${training}&status=${status}`
     );
     const data = await res.json();
     const orders = data?.data;
@@ -96,13 +98,24 @@ export default function OrderTraining() {
   return (
     <section>
       <div className="rounded border-b bg-base-100 p-4">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <h1 className="font-medium text-neutral">Order Training</h1>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <select
+              onChange={(e) => setStatus(e.target.value)}
+              value={status}
+              className="sm:w-40"
+            >
+              <option value="all">Filter Status</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+            </select>
+
             <select
               onChange={(e) => setTraining(e.target.value)}
               value={training}
+              className="sm:w-40"
             >
               <option value="all">All</option>
               {trainings?.map((training) => (
@@ -111,6 +124,7 @@ export default function OrderTraining() {
                 </option>
               ))}
             </select>
+
             <button
               onClick={handleDownloadExcel}
               className="primary_btn text-xs flex items-center gap-2"

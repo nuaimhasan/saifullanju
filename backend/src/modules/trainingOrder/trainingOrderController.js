@@ -54,20 +54,19 @@ exports.createOrder = async (req, res) => {
 exports.getAllOrders = async (req, res) => {
   const paginationOptions = pick(req.query, ["page", "limit"]);
   const { page, limit, skip } = calculatePagination(paginationOptions);
-  const { user, training } = req.query;
+  const { user, training, status } = req.query;
 
   try {
     const query = {};
     if (user && user !== "null" && user !== "undefined")
       query["user.email"] = user;
 
-    if (
-      training &&
-      training !== "null" &&
-      training !== "undefined" &&
-      training !== "all"
-    ) {
+    if (training !== "null" && training !== "undefined" && training !== "all") {
       query.training = training;
+    }
+
+    if (status !== "null" && status !== "undefined" && status !== "all") {
+      query.status = status;
     }
 
     const data = await Model.find(query)
