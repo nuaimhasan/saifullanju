@@ -61,11 +61,21 @@ exports.getAllOrders = async (req, res) => {
     if (user && user !== "null" && user !== "undefined")
       query["user.email"] = user;
 
-    if (training !== "null" && training !== "undefined" && training !== "all") {
+    if (
+      training &&
+      training !== "null" &&
+      training !== "undefined" &&
+      training !== "all"
+    ) {
       query.training = training;
     }
 
-    if (status !== "null" && status !== "undefined" && status !== "all") {
+    if (
+      status &&
+      status !== "null" &&
+      status !== "undefined" &&
+      status !== "all"
+    ) {
       query.status = status;
     }
 

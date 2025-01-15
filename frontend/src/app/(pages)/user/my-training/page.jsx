@@ -11,7 +11,10 @@ export default function MyTraining() {
   const { loggedUser } = useSelector((state) => state.user);
   const user = loggedUser?.data;
 
-  const { data: orders } = useGetAllTrainingOrdersQuery({ user: user?.email });
+  const { data: orders } = useGetAllTrainingOrdersQuery({
+    user: user?.email,
+    status: "approved",
+  });
   const trainingOrders = orders?.data;
 
   return (
