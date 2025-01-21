@@ -4,7 +4,16 @@ import Providers from "@/Redux/Providers/Providers";
 import { Toaster } from "react-hot-toast";
 import LayoutWrapper from "./LayoutWrapper";
 
-export default function RootLayout({ children }) {
+async function getData() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/seo`);
+  const data = await res.json();
+
+  return { seo: data?.data };
+}
+
+export default async function RootLayout({ children }) {
+  const { seo } = await getData();
+
   return (
     <html lang="en" data-theme="light">
       <head>
@@ -46,14 +55,14 @@ export default function RootLayout({ children }) {
               j.async = true;
               j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
               f.parentNode.insertBefore(j, f);
-            })(window, document, "script", "dataLayer", "GTM-ND7CMJK7");
+            })(window, document, "script", "dataLayer", "GTM-${seo?.custom?.google_tag_manager}");
           `}
         </script>
       </head>
       <body>
         <noscript>
           <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=GTM-ND7CMJK7`}
+            src={`https://www.googletagmanager.com/ns.html?id=GTM-${seo?.custom?.google_tag_manager}`}
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
