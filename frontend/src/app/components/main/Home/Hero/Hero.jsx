@@ -16,7 +16,7 @@ export default async function Hero() {
       <div className="container relative z-20">
         <div className="grid items-center gap-10 sm:grid-cols-2 sm:gap-0">
           <div className="fade_up relative">
-            <h3 className="w-max rounded-xl bg-base-100/10 px-3 py-1 text-xs text-base-100">
+            <h3 className="w-max rounded-xl bg-base-100/10 px-3 py-1 text-sm text-base-100">
               {about?.subTitle}
             </h3>
 

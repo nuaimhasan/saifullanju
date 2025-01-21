@@ -1,4 +1,5 @@
 import TrainingCard from "@/app/components/main/Training/TrainingCard";
+import PageViewClient from "@/app/hooks/PageViewClient";
 
 const getData = async () => {
   const res = await fetch(
@@ -13,14 +14,17 @@ export default async function Training() {
   const AllTraining = data.data;
 
   return (
-    <section className="py-5">
-      <div className="container">
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
-          {AllTraining?.map((training) => (
-            <TrainingCard key={training._id} training={training} />
-          ))}
+    <>
+      <PageViewClient title="Training" url="/training" />
+      <section className="py-5">
+        <div className="container">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
+            {AllTraining?.map((training) => (
+              <TrainingCard key={training._id} training={training} />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

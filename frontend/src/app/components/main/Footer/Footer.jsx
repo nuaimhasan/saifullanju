@@ -86,6 +86,14 @@ export default async function Footer() {
               </li>
               <li>
                 <Link
+                  href="/about"
+                  className="duration-300 hover:text-base-100 hover:underline"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/contact"
                   className="duration-300 hover:text-base-100 hover:underline"
                 >
@@ -113,7 +121,7 @@ export default async function Footer() {
         </div>
 
         <div className="mt-8 border-t pt-4">
-          <h2 className="text-center">© Saiful Lanju 2024</h2>
+          <h2 className="text-center">© Saiful Lanju 2025</h2>
         </div>
       </div>
     </footer>

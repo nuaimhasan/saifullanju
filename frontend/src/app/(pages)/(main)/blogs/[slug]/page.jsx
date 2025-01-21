@@ -1,5 +1,6 @@
 import moment from "moment";
 import parser from "html-react-parser";
+import PageViewClient from "@/app/hooks/PageViewClient";
 
 async function getData(slug) {
   const res = await fetch(
@@ -51,6 +52,7 @@ export default async function BlogDetails({ params }) {
 
   return (
     <>
+      <PageViewClient title={slug} url={`/blogs/${slug}`} />
       <section className="py-4">
         <div className="container">
           <div className="grid gap-6 xl:grid-cols-4">
