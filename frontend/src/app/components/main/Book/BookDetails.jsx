@@ -84,9 +84,9 @@ export default function BookDetailsCom({ book }) {
               </Link>
             </div>
 
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <p className="text-neutral-content">Share With Your Friends</p>
-            </div>
+            </div> */}
           </div>
         </div>
 

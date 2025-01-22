@@ -1,4 +1,5 @@
 "use client";
+import BookCheckoutEvent from "@/app/hooks/BookCheckoutEvent";
 import PageViewClient from "@/app/hooks/PageViewClient";
 import { useGetBookBySlugQuery } from "@/Redux/api/book/bookApi";
 import { useAddBookOrderOrderMutation } from "@/Redux/api/book/bookOrderApi";
@@ -80,7 +81,6 @@ export default function BookCheckout() {
 
   return (
     <>
-      <PageViewClient title={book?.title} url={`/books/checkout/${slug}`} />
       <section className="pt-5">
         <div className="container">
           <form onSubmit={handleSubmit} className="grid gap-4 lg:grid-cols-3">
@@ -291,6 +291,8 @@ export default function BookCheckout() {
           <div className="flex justify-end"></div>
         </div>
       </section>
+      <PageViewClient title={book?.title} url={`/books/checkout/${slug}`} />
+      <BookCheckoutEvent book={book} user={user} quantity={quantity} />
     </>
   );
 }
