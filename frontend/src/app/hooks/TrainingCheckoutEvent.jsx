@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const PageViewClient = ({ title, url }) => {
+export default function TrainingCheckoutEvent({ training, user }) {
   const [userIP, setUserIP] = useState("");
 
   useEffect(() => {
@@ -23,20 +23,33 @@ const PageViewClient = ({ title, url }) => {
   }, []);
 
   useEffect(() => {
-    if (userIP) {
+    if (training && userIP) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: "pageview",
-        page: {
-          title: title,
-          url: process.env.NEXT_PUBLIC_FRONTEND_URL + url,
+        event: "begin_checkout",
+        customer: {
           ip: userIP,
+          name: user?.name,
+          email: user?.email,
+          phone: user?.phone,
+          gender: user?.gender,
+        },
+        ecommerce: {
+          type: "training",
+          currency: "BDT",
+          value: training?.price,
+          items: [
+            {
+              item_id: training?._id,
+              item_name: training?.title,
+              quantity: 1,
+              price: training?.price,
+            },
+          ],
         },
       });
     }
-  }, [title, url, userIP]);
+  }, [training, userIP]);
 
   return null;
-};
-
-export default PageViewClient;
+}

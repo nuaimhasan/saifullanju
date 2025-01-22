@@ -8,6 +8,7 @@ import moment from "moment";
 import Faq from "./Faq";
 import { useGetData } from "@/Hook/useGetData";
 import PageViewClient from "@/app/hooks/PageViewClient";
+import ViewTrainingItem from "@/app/hooks/ViewTrainingItem";
 
 export default async function TrainingDetails({ params }) {
   const { slug } = params;
@@ -17,7 +18,6 @@ export default async function TrainingDetails({ params }) {
 
   return (
     <>
-      <PageViewClient title={slug} url={`/training/${slug}`} />
       <section className="pt-8">
         <div className="container">
           <div className="grid sm:grid-cols-2 gap-6 items-start">
@@ -148,6 +148,8 @@ export default async function TrainingDetails({ params }) {
           </div>
         </div>
       </section>
+      <PageViewClient title={slug} url={`/training/${slug}`} />
+      <ViewTrainingItem training={training} />
     </>
   );
 }

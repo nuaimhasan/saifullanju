@@ -9,7 +9,6 @@ export default async function DownloadTicket({ params }) {
 
   return (
     <>
-      <PageViewClient title="Ticket Download" url="/training/download-ticket" />
       <section className="py-5">
         <div className="container">
           <h1 className="text-xl sm:text-3xl font-medium">
@@ -21,6 +20,8 @@ export default async function DownloadTicket({ params }) {
           </div>
         </div>
       </section>
+
+      <PageViewClient title="Ticket Download" url="/training/download-ticket" />
     </>
   );
 }

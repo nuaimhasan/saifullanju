@@ -10,6 +10,7 @@ import Spinner from "@/app/components/Spinner";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import PageViewClient from "@/app/hooks/PageViewClient";
+import TrainingCheckoutEvent from "@/app/hooks/TrainingCheckoutEvent";
 
 export default function page() {
   const { slug } = useParams();
@@ -94,10 +95,6 @@ export default function page() {
 
   return (
     <>
-      <PageViewClient
-        title={training?.title}
-        url={`/training/checkout/${slug}`}
-      />
       <section className="py-5 relative">
         <div className="container">
           <div className="bg-base-100 rounded shadow border p-4">
@@ -333,6 +330,11 @@ export default function page() {
           </div>
         </div>
       </section>
+      <PageViewClient
+        title={training?.title}
+        url={`/training/checkout/${slug}`}
+      />
+      <TrainingCheckoutEvent training={training} user={user} />
     </>
   );
 }
