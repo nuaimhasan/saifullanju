@@ -25,7 +25,7 @@ exports.addOrder = async (req, res) => {
     if (lastOrder && lastOrder?.invoiceNumber) {
       const invoiceNb = lastOrder?.invoiceNumber;
       const newNumber = parseInt(invoiceNb) + 1;
-      invoiceNumber = `${newNumber.toString().padStart(4, "0")}`;
+      invoiceNumber = `${newNumber.toString().padStart(5, "0")}`; // Updated to 5 digits for invoice numbers
     }
 
     const orderData = {
@@ -109,7 +109,7 @@ exports.getOrderById = async (req, res) => {
 
     res.json({
       success: true,
-      message: "Book Order get successfully",
+      message: "Book Order fetched successfully",
       data: result,
     });
   } catch (error) {

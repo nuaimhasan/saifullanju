@@ -30,8 +30,9 @@ const BookOrderSchema = new mongoose.Schema(
         required: true,
       },
     },
-    note: {
+    accountNb: {
       type: String,
+      required: true,
     },
     totalAmount: {
       type: Number,
@@ -45,16 +46,16 @@ const BookOrderSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    discount: {
-      type: Number,
-      required: true,
-    },
     paymentMethod: {
       type: String,
       required: true,
     },
     transactionId: {
       type: String,
+    },
+    date: {
+      type: Date,
+      required: true,
     },
     status: {
       type: String,

@@ -120,10 +120,16 @@ export default function OrderDetails() {
         </div>
 
         <div className="rounded-md border bg-base-100 p-2">
-          <h2 className="text-lg font-medium">Shipping Note</h2>
+          <h2 className="text-lg font-medium">Payment Details</h2>
 
           <div className="mt-3 flex flex-col gap-1 text-[15px] text-neutral">
-            <p>{order?.note}</p>
+            <p>Transaction ID: {order?.transactionId}</p>
+            <p> Account No: {order?.accountNb} </p>
+            <p>Date: {moment(order?.date).format("Do MMMM YYYY")}</p>
+            <p>Amount: {order?.totalAmount} BDT</p>
+            <p>Payment Method: {order?.paymentMethod}</p>
+            <p>Shipping Charge: {order?.shipping} BDT</p>
+            
           </div>
         </div>
       </div>

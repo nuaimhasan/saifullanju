@@ -140,7 +140,7 @@ export default function BookInvoice() {
                 <td colSpan={4} className="text-end">
                   Discount
                 </td>
-                <td>{order?.discount} BDT</td>
+                <td>{order?.discount ? order?.discount : 0} BDT</td>
               </tr>
 
               <tr>
