@@ -1,4 +1,7 @@
 "use client";
+import { GiContract } from "react-icons/gi";
+import { MdOutlinePayments } from "react-icons/md";
+import { FaShippingFast } from "react-icons/fa";
 import "@/app/styles/setting.css";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdAccountCircle } from "react-icons/md";
@@ -26,7 +29,7 @@ export default function AdminSettingLayout({ children }) {
 
           <li>
             <ActiveLink href="/admin/settings/favicon">
-              <IoLogoBuffer />
+              <GiContract />
               Favicon
             </ActiveLink>
           </li>
@@ -35,6 +38,20 @@ export default function AdminSettingLayout({ children }) {
             <ActiveLink href="/admin/settings/speech-section">
               <IoLogoBuffer />
               Speech Section
+            </ActiveLink>
+          </li>
+
+          <li>
+            <ActiveLink href="/admin/settings/shipping-configuration">
+              <FaShippingFast />
+              Shipping Configuration
+            </ActiveLink>
+          </li>
+
+          <li>
+            <ActiveLink href="/admin/settings/manual-payment-instruction">
+              <MdOutlinePayments />
+              Manual Payment Instruction
             </ActiveLink>
           </li>
         </ul>

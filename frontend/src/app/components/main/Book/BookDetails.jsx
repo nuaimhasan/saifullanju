@@ -5,9 +5,12 @@ import Link from "next/link";
 import parser from "html-react-parser";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useGetShippingConfigQuery } from "@/Redux/api/shippingConfigApi";
 
 export default function BookDetailsCom({ book }) {
   const [quantity, setQuantity] = useState(1);
+  const { data: shippingConfig } = useGetShippingConfigQuery();
+  const charge = shippingConfig?.data?.charge;
 
   return (
     <section className="py-5">
@@ -40,7 +43,7 @@ export default function BookDetailsCom({ book }) {
             </p>
 
             <div className="mt-6 text-neutral/80 font-medium">
-              <p>All Over Bangladesh : 50.00 BDT</p>
+              <p>All Over Bangladesh : {charge}TK</p>
             </div>
 
             <div className="mt-10 flex items-center gap-6">

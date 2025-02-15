@@ -25,6 +25,9 @@ const trainingOrder = require("../modules/trainingOrder/trainingOrderRoutes");
 const book = require("../modules/book/bookRoutes");
 const bookOrder = require("../modules/bookOrder/bookOrderRoutes");
 
+const shippingConfig = require("../modules/shippingConfig/shippingConfigRoutes");
+const paymentInstruction = require("../modules/paymentInstruction/paymentInstructionRoutes");
+
 const seo = require("./seoRoutes");
 
 //------------------------------------------------------------------------------
@@ -51,6 +54,10 @@ router.use("/trainingOrder", trainingOrder);
 
 router.use("/book", book);
 router.use("/bookOrder", bookOrder);
+
+
+router.use("/shipping-config", shippingConfig);
+router.use("/payment-instruction", paymentInstruction);
 
 router.use("/seo", seo);
 

@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import PageViewClient from "@/app/hooks/PageViewClient";
 import TrainingCheckoutEvent from "@/app/hooks/TrainingCheckoutEvent";
+import ManualPaymentInstruction from "@/app/components/main/ManualPaymentInstruction/ManualPaymentInstruction";
 
 export default function page() {
   const { slug } = useParams();
@@ -301,33 +302,7 @@ export default function page() {
             </div>
           </div>
 
-          <div className="mt-10">
-            <h2 className="text-center text-primary italic font-semibold text-3xl">
-              Manual payment instruction
-            </h2>
-
-            <div className="mt-5 text-[15px] text-neutral/80">
-              <ul className="list-decimal list-inside space-y-2">
-                <li>আপনার Bkash অ্যাপ খুলুন অথবা *247# ডায়াল করুন।</li>
-                <li>"Send Money" অপশন নির্বাচন করুন।</li>
-                <li>আমাদের Bkash নম্বরে টাকা পাঠান: 017XXXXXXXX।</li>
-                <li>টাকা পাঠানোর সময় সঠিক পরিমাণ (Amount) নিশ্চিত করুন।</li>
-                <li>পেমেন্ট সফলভাবে সম্পন্ন হলে একটি Transaction ID পাবেন।</li>
-              </ul>
-
-              <ul className="mt-4 list-decimal list-inside space-y-2">
-                <p className="text-xl mb-2 text-neutral font-semibold">
-                  পেমেন্ট সম্পন্ন হওয়ার পর নিচের তথ্যগুলো আমাদের প্রদান করুন:
-                </p>
-                <li>Bkash নম্বর: যেখান থেকে আপনি টাকা পাঠিয়েছেন।</li>
-                <li>
-                  Transaction ID: পেমেন্ট করার সময় প্রাপ্ত ট্রান্সেকশন আইডি।
-                </li>
-                <li>Amount: কত টাকা পাঠিয়েছেন।</li>
-                <li>তারিখ: যেদিন আপনি পেমেন্ট করেছেন।</li>
-              </ul>
-            </div>
-          </div>
+          <ManualPaymentInstruction />
         </div>
       </section>
       <PageViewClient

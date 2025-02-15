@@ -10,6 +10,8 @@ import { GrSecure } from "react-icons/gr";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import Spinner from "@/app/components/Spinner";
+import ManualPaymentInstruction from "@/app/components/main/ManualPaymentInstruction/ManualPaymentInstruction";
+import { useGetShippingConfigQuery } from "@/Redux/api/shippingConfigApi";
 
 export default function BookCheckout() {
   const { slug } = useParams();
@@ -27,13 +29,20 @@ export default function BookCheckout() {
   const { data, isLoading } = useGetBookBySlugQuery(slug);
   const book = data?.data;
 
+  const { data: shippingConfig } = useGetShippingConfigQuery();
+  const charge = shippingConfig?.data?.charge;
+
   const { loggedUser } = useSelector((state) => state.user);
   const user = loggedUser?.data;
 
   const searchParams = useSearchParams();
   const quantity = searchParams.get("quantity");
 
-  const [shipping, setShipping] = useState(50);
+  const [shipping, setShipping] = useState(0);
+  useEffect(() => {
+    if (charge) setShipping(charge);
+  }, [charge]);
+
   const [paymentMethod, setPaymentMethod] = useState("manualbKash");
 
   const totalPrice = parseInt(book?.price * quantity || 1);
@@ -129,23 +138,20 @@ export default function BookCheckout() {
 
                     <div className="mt-4">
                       <div className="flex justify-between items-center">
-                        <p className="text-sm text-neutral">Book Price</p>
+                        <p className="text-sm text-neutral">
+                          Book Price * {quantity}
+                        </p>
                         <p className="text-sm text-neutral">
                           ৳{" "}
                           {new Intl.NumberFormat("en-EN", {
                             minimumFractionDigits: 0,
-                          }).format(book?.price)}
+                          }).format(totalPrice)}
                         </p>
                       </div>
 
                       <div className="flex justify-between items-center">
                         <p className="text-sm text-neutral">Shipping</p>
-                        <p className="text-sm text-neutral">
-                          ৳{" "}
-                          {new Intl.NumberFormat("en-EN", {
-                            minimumFractionDigits: 0,
-                          }).format(book?.price)}
-                        </p>
+                        <p className="text-sm text-neutral">৳ {shipping}</p>
                       </div>
 
                       <div className="mt-1 pt-1 border-t flex justify-between items-center font-semibold">
@@ -324,21 +330,7 @@ export default function BookCheckout() {
             </div>
           </div>
 
-          <div className="mt-10">
-            <h2 className="text-center text-primary italic font-semibold text-3xl">
-              Manual payment instruction
-            </h2>
-
-            <div className="mt-5 text-[15px] text-neutral/80">
-              <ul className="list-decimal list-inside space-y-2">
-                <li>আপনার Bkash অ্যাপ খুলুন অথবা *247# ডায়াল করুন।</li>
-                <li>"Send Money" অপশন নির্বাচন করুন।</li>
-                <li>আমাদের Bkash নম্বরে টাকা পাঠান: 017XXXXXXXX।</li>
-                <li>টাকা পাঠানোর সময় সঠিক পরিমাণ (Amount) নিশ্চিত করুন।</li>
-                <li>পেমেন্ট সফলভাবে সম্পন্ন হলে একটি Transaction ID পাবেন।</li>
-              </ul>
-            </div>
-          </div>
+          <ManualPaymentInstruction />
         </div>
       </section>
       <PageViewClient title={book?.title} url={`/books/checkout/${slug}`} />
