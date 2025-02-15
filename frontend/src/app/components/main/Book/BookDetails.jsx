@@ -39,9 +39,8 @@ export default function BookDetailsCom({ book }) {
               BDT
             </p>
 
-            <div className="mt-6 text-neutral/80 text-lg font-medium">
-              <p>Inside Dhaka : 50.00 BDT</p>
-              <p>Outside Dhaka : 90.00 BDT</p>
+            <div className="mt-6 text-neutral/80 font-medium">
+              <p>All Over Bangladesh : 50.00 BDT</p>
             </div>
 
             <div className="mt-10 flex items-center gap-6">

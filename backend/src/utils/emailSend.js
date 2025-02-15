@@ -6,8 +6,8 @@ const frontendURL = process.env.FRONTEND_URL;
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "nuaim.emanager@gmail.com",
-    pass: "jdhu ocil dkar agzg",
+    user: "lanju.saiful@gmail.com",
+    pass: "mpoo yiog pgxb ornj",
   },
 });
 

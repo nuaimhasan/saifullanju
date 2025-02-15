@@ -18,6 +18,7 @@ export default function BookCheckout() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [accountNb, setAccountNb] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -32,17 +33,16 @@ export default function BookCheckout() {
   const searchParams = useSearchParams();
   const quantity = searchParams.get("quantity");
 
-  const [shipping, setShipping] = useState(80);
+  const [shipping, setShipping] = useState(50);
   const [paymentMethod, setPaymentMethod] = useState("manualbKash");
 
   const totalPrice = parseInt(book?.price * quantity || 1);
-  const totalAmount = totalPrice + parseInt(shipping); // Removed discount logic
+  const totalAmount = totalPrice + parseInt(shipping);
 
   const [addBookOrderOrder, { isLoading: addIsLoading }] =
     useAddBookOrderOrderMutation();
 
   const handleSubmit = async () => {
-
     // const name = e.target.userName.value;
     // const email = e.target.email.value;
     // const phone = e.target.number.value;
@@ -73,6 +73,7 @@ export default function BookCheckout() {
         name,
         email,
         phone,
+        city,
         address,
       },
       totalAmount,
@@ -84,12 +85,11 @@ export default function BookCheckout() {
       shipping,
     };
 
-
     // Call the mutation to add the book order
     const res = await addBookOrderOrder(data);
     if (res?.data?.success) {
       toast.success(res?.data?.message || "Order placed successfully");
-      e.target.reset(); // Reset form after successful submission
+      e.target.reset();
       router.push(`/books/order/success/${res?.data?.data?._id}`);
     } else {
       toast.error(res?.data?.message || "Something went wrong");
@@ -130,6 +130,16 @@ export default function BookCheckout() {
                     <div className="mt-4">
                       <div className="flex justify-between items-center">
                         <p className="text-sm text-neutral">Book Price</p>
+                        <p className="text-sm text-neutral">
+                          ৳{" "}
+                          {new Intl.NumberFormat("en-EN", {
+                            minimumFractionDigits: 0,
+                          }).format(book?.price)}
+                        </p>
+                      </div>
+
+                      <div className="flex justify-between items-center">
+                        <p className="text-sm text-neutral">Shipping</p>
                         <p className="text-sm text-neutral">
                           ৳{" "}
                           {new Intl.NumberFormat("en-EN", {
@@ -189,7 +199,18 @@ export default function BookCheckout() {
                         />
                       </div>
                       <div>
-                        <p>Address *</p>
+                        <p>City *</p>
+                        <input
+                          type="text"
+                          name="city"
+                          className="w-full rounded border-2 p-2 outline-none"
+                          required
+                          onChange={(e) => setCity(e.target.value)}
+                          defaultValue={user?.city}
+                        />
+                      </div>
+                      <div className="col-span-2">
+                        <p>Full Address *</p>
                         <textarea
                           name="fullAdress"
                           rows="3"
@@ -260,7 +281,6 @@ export default function BookCheckout() {
                           name="amount"
                           value={totalAmount}
                           className="w-full rounded border-2 p-2 outline-none"
-                          readOnly
                         />
                       </div>
                       <div>
