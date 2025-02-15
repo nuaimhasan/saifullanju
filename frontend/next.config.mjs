@@ -12,7 +12,7 @@ const nextConfig = {
     ],
   },
   env: {
-    PORT: process.env.PORT || 2550,
+    PORT: process.env.PORT || 2500,
   },
 };
 
