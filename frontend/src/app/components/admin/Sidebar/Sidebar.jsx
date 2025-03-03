@@ -1,3 +1,4 @@
+import { TfiGallery } from "react-icons/tfi";
 import { FaUsers } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { SiSkillshare } from "react-icons/si";
@@ -107,6 +108,11 @@ const adminSidebarItems = [
         icon: <AiOutlineContacts />,
         title: "Contact",
         path: "/admin/pages/contact",
+      },
+      {
+        icon: <TfiGallery />,
+        title: "Gallery",
+        path: "/admin/pages/gallery/all",
       },
     ],
   },

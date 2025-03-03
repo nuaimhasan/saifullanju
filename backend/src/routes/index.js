@@ -12,6 +12,7 @@ const speech = require("./speechRoutes");
 
 const contactRouter = require("./contactRoutes");
 const aboutRouter = require("./aboutRoutes");
+const gallery = require("../modules/gallery/galleryRoute");
 
 const blogCategory = require("./blog/categoryRoutes");
 const blog = require("./blog/blogRoutes");
@@ -42,6 +43,7 @@ router.use("/speech", speech);
 
 router.use("/contact", contactRouter);
 router.use("/about", aboutRouter);
+router.use("/gallery", gallery);
 
 router.use("/blog/category", blogCategory);
 router.use("/blog", blog);
@@ -54,7 +56,6 @@ router.use("/trainingOrder", trainingOrder);
 
 router.use("/book", book);
 router.use("/bookOrder", bookOrder);
-
 
 router.use("/shipping-config", shippingConfig);
 router.use("/payment-instruction", paymentInstruction);

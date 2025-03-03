@@ -28,7 +28,8 @@ export const baseApi = createApi({
     "book",
     "bookOrder",
     "user",
-    'shippingConfig',
-    'paymentInstruction'
+    "shippingConfig",
+    "paymentInstruction",
+    "gallery",
   ],
 });
