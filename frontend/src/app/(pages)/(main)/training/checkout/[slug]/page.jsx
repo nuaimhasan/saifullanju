@@ -28,7 +28,7 @@ export default function page() {
   const router = useRouter();
 
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   useEffect(() => {
     if (user) {
@@ -125,20 +125,42 @@ export default function page() {
                       <div className="flex justify-between items-center">
                         <p className="text-sm text-neutral">Training Price</p>
                         <p className="text-sm text-neutral">
-                          ৳{" "}
-                          {new Intl.NumberFormat("en-EN", {
-                            minimumFractionDigits: 0,
-                          }).format(training?.price)}
+                          {training?.discountPrice &&
+                          training?.discountPrice > 0 ? (
+                            <>
+                              <del className="ttext-red-500 pr-2">
+                                ৳
+                                {new Intl.NumberFormat("en-EN", {
+                                  minimumFractionDigits: 0,
+                                }).format(training?.price)}
+                              </del>
+                              ৳ {training?.discountPrice}
+                            </>
+                          ) : (
+                            <>
+                              ৳{" "}
+                              {new Intl.NumberFormat("en-EN", {
+                                minimumFractionDigits: 0,
+                              }).format(training?.price)}
+                            </>
+                          )}
                         </p>
                       </div>
 
                       <div className="mt-1 pt-1 border-t flex justify-between items-center font-semibold">
                         <p className="text-sm text-neutral">Total Payment:</p>
                         <p className="text-sm text-neutral">
-                          ৳{" "}
-                          {new Intl.NumberFormat("en-EN", {
-                            minimumFractionDigits: 0,
-                          }).format(training?.price)}
+                          {training?.discountPrice &&
+                          training?.discountPrice > 0 ? (
+                            <>৳ {training?.discountPrice}</>
+                          ) : (
+                            <>
+                              ৳{" "}
+                              {new Intl.NumberFormat("en-EN", {
+                                minimumFractionDigits: 0,
+                              }).format(training?.price)}
+                            </>
+                          )}
                         </p>
                       </div>
                     </div>
@@ -270,10 +292,17 @@ export default function page() {
                   <div className="mt-4 pt-2 border-t flex justify-between items-center font-semibold">
                     <p className="text-sm text-neutral">Total Payment:</p>
                     <p className="text-sm text-neutral">
-                      ৳{" "}
-                      {new Intl.NumberFormat("en-EN", {
-                        minimumFractionDigits: 0,
-                      }).format(training?.price)}
+                      {training?.discountPrice &&
+                      training?.discountPrice > 0 ? (
+                        <>৳ {training?.discountPrice}</>
+                      ) : (
+                        <>
+                          ৳{" "}
+                          {new Intl.NumberFormat("en-EN", {
+                            minimumFractionDigits: 0,
+                          }).format(training?.price)}
+                        </>
+                      )}
                     </p>
                   </div>
 

@@ -16,10 +16,8 @@ export default function Header() {
   const [isbg, setIsbg] = useState(false);
   const [profileDropdown, setProfileDropdown] = useState(false);
 
-  const dispatch = useDispatch();
-
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (pathname !== "/") {
@@ -106,7 +104,7 @@ export default function Header() {
                   <Link href="/contact">Contact</Link>
                 </li>
                 <li>
-                  {loggedUser?.success ? (
+                  {loggedUser ? (
                     <div className="relative">
                       <button
                         onClick={() => setProfileDropdown(!profileDropdown)}
@@ -118,9 +116,9 @@ export default function Header() {
                       {profileDropdown && (
                         <div className="absolute top-8 right-0 bg-base-100 border rounded shadow min-w-56 text-neutral">
                           <div className="px-4 py-3 text-sm">
-                            <div>{user?.name}</div>
+                            <div>{loggedUser?.name}</div>
                             <div className="font-medium truncate">
-                              {user?.email}
+                              {loggedUser?.email}
                             </div>
                           </div>
                           <ul className="py-2 text-sm border-y">

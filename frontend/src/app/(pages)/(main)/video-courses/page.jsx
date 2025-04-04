@@ -11,7 +11,7 @@ export default function VideoCourses() {
           <div className="h-[83vh] flex flex-col items-center justify-center">
             <Image
               src="/roket.png"
-              alt="roekt"
+              alt="roket"
               className="w-20"
               width={100}
               height={100}

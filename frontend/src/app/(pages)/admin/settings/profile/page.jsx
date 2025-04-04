@@ -5,7 +5,7 @@ import { useUpdateInfoMutation } from "@/Redux/api/user/adminApi";
 
 export default function Profile() {
   const { loggedUser } = useSelector((store) => store.user);
-  const id = loggedUser?.data?._id;
+  const id = loggedUser?._id;
 
   const [updateInfo, { isLoading }] = useUpdateInfoMutation();
 
@@ -38,11 +38,7 @@ export default function Profile() {
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
             <p className="mb-1">Name</p>
-            <input
-              type="text"
-              name="name"
-              defaultValue={loggedUser?.data?.name}
-            />
+            <input type="text" name="name" defaultValue={loggedUser?.name} />
           </div>
 
           <div>
@@ -50,18 +46,14 @@ export default function Profile() {
             <input
               type="text"
               name="email"
-              defaultValue={loggedUser?.data?.email}
+              defaultValue={loggedUser?.email}
               disabled
             />
           </div>
 
           <div>
             <p className="mb-1">Phone</p>
-            <input
-              type="text"
-              name="phone"
-              defaultValue={loggedUser?.data?.phone}
-            />
+            <input type="text" name="phone" defaultValue={loggedUser?.phone} />
           </div>
         </div>
 

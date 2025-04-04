@@ -51,21 +51,55 @@ export default async function SuccessTrainingOrder({ params }) {
                 <tbody>
                   <tr>
                     <td>{order?.training?.title}</td>
-                    <td>{order?.training?.price} BDT</td>
+                    <td>
+                      {order?.training?.discountPrice &&
+                      order?.training?.discountPrice > 0 ? (
+                        <>
+                          <del className="text-base text-red-500 pr-2">
+                            ৳{" "}
+                            {new Intl.NumberFormat("en-EN", {
+                              minimumFractionDigits: 0,
+                            }).format(order?.training?.price)}
+                          </del>
+                          ৳ {order?.training?.discountPrice}
+                        </>
+                      ) : (
+                        <>
+                          ৳{" "}
+                          {new Intl.NumberFormat("en-EN", {
+                            minimumFractionDigits: 0,
+                          }).format(order?.training?.price)}
+                        </>
+                      )}
+                    </td>
                   </tr>
                   <tr className="text-primary font-semibold text-base">
                     <td>Total</td>
-                    <td>{order?.training?.price} BDT</td>
+                    <td>
+                      {order?.training?.discountPrice &&
+                      order?.training?.discountPrice > 0 ? (
+                        <>
+                          <del className="text-base text-red-500 pr-2">
+                            ৳{" "}
+                            {new Intl.NumberFormat("en-EN", {
+                              minimumFractionDigits: 0,
+                            }).format(order?.training?.price)}
+                          </del>
+                          ৳ {order?.training?.discountPrice}
+                        </>
+                      ) : (
+                        <>
+                          ৳{" "}
+                          {new Intl.NumberFormat("en-EN", {
+                            minimumFractionDigits: 0,
+                          }).format(order?.training?.price)}
+                        </>
+                      )}
+                    </td>
                   </tr>
                   <tr>
                     <td>Recived</td>
                     <td>{order?.payment?.amount} BDT</td>
-                  </tr>
-                  <tr>
-                    <td>Due</td>
-                    <td>
-                      {order?.training?.price - order?.payment?.amount} BDT
-                    </td>
                   </tr>
                 </tbody>
               </table>

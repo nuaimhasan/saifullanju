@@ -6,7 +6,7 @@ import PageViewClient from "@/app/hooks/PageViewClient";
 
 export default function MyProfile() {
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   return (
     <>

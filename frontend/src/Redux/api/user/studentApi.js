@@ -23,11 +23,10 @@ export const studentApi = baseApi.injectEndpoints({
           const result = await queryFulfilled;
 
           if (result?.data?.success) {
-            localStorage.setItem("token", result?.data?.token);
-
             dispatch(
               userLoggedIn({
-                data: result?.data,
+                user: result?.data?.data,
+                token: result?.data?.token,
               })
             );
           }

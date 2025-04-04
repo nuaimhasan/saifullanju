@@ -33,7 +33,7 @@ export default function BookCheckout() {
   const charge = shippingConfig?.data?.charge;
 
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   const searchParams = useSearchParams();
   const quantity = searchParams.get("quantity");

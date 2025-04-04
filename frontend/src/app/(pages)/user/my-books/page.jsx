@@ -7,7 +7,7 @@ import PageViewClient from "@/app/hooks/PageViewClient";
 
 export default function MyBooks() {
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   const [currentPage, setCurrentPage] = useState(1);
   let limit = 10;

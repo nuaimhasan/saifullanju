@@ -23,6 +23,9 @@ const TrainingSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  discountPrice: {
+    type: Number,
+  },
   startDate: {
     type: Date,
     required: true,

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   loggedUser: undefined,
+  token: null,
 };
 
 const userSlice = createSlice({
@@ -9,11 +10,12 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     userLoggedIn: (state, action) => {
-      state.loggedUser = action.payload.data;
+      state.loggedUser = action.payload.user;
+      state.token = action.payload.token;
     },
     userLogout: (state) => {
       state.loggedUser = undefined;
-      localStorage.removeItem("token");
+      state.token = undefined;
     },
   },
 });

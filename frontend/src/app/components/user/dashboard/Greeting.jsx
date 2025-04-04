@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 export default function Greeting() {
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   return (
     <h1 className="text-lg font-medium text-neutral/80">

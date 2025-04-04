@@ -2,7 +2,6 @@ export const revalidate = 0;
 import "@/app/styles/globals.css";
 import Providers from "@/Redux/Providers/Providers";
 import { Toaster } from "react-hot-toast";
-import LayoutWrapper from "./LayoutWrapper";
 
 async function getData() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/seo`);
@@ -69,10 +68,7 @@ export default async function RootLayout({ children }) {
           ></iframe>
         </noscript>
 
-        <Providers>
-          {children}
-          <LayoutWrapper />
-        </Providers>
+        <Providers>{children}</Providers>
         <Toaster position="top-center" />
       </body>
     </html>

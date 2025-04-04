@@ -41,10 +41,24 @@ export default async function TrainingDetails({ params }) {
                 </Link>
 
                 <h4 className="font-semibold text-neutral text-2xl">
-                  ৳{" "}
-                  {new Intl.NumberFormat("en-EN", {
-                    minimumFractionDigits: 0,
-                  }).format(training?.price)}
+                  {training?.discountPrice && training?.discountPrice > 0 ? (
+                    <>
+                      <del className="text-base text-red-500 pr-2">
+                        ৳{" "}
+                        {new Intl.NumberFormat("en-EN", {
+                          minimumFractionDigits: 0,
+                        }).format(training?.price)}
+                      </del>
+                      {training?.discountPrice}
+                    </>
+                  ) : (
+                    <>
+                      ৳{" "}
+                      {new Intl.NumberFormat("en-EN", {
+                        minimumFractionDigits: 0,
+                      }).format(training?.price)}
+                    </>
+                  )}
                 </h4>
               </div>
 
@@ -58,7 +72,7 @@ export default async function TrainingDetails({ params }) {
             <div>
               <Image
                 src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${training?.image}`}
-                alt={training?.title}
+                alt={training?.title || ""}
                 width={500}
                 height={300}
                 className="rounded"
@@ -124,10 +138,24 @@ export default async function TrainingDetails({ params }) {
             <div className="flex justify-between items-center">
               <div>
                 <h4 className="font-semibold text-2xl">
-                  ৳{" "}
-                  {new Intl.NumberFormat("en-EN", {
-                    minimumFractionDigits: 0,
-                  }).format(training?.price)}
+                  {training?.discountPrice && training?.discountPrice > 0 ? (
+                    <>
+                      <del className="text-base text-red-500 pr-2">
+                        ৳{" "}
+                        {new Intl.NumberFormat("en-EN", {
+                          minimumFractionDigits: 0,
+                        }).format(training?.price)}
+                      </del>
+                      ৳ {training?.discountPrice}
+                    </>
+                  ) : (
+                    <>
+                      ৳{" "}
+                      {new Intl.NumberFormat("en-EN", {
+                        minimumFractionDigits: 0,
+                      }).format(training?.price)}
+                    </>
+                  )}
                 </h4>
                 <div className="mt-1">
                   <div className="flex items-center gap-1 bg-gray-100 text-neutral py-1 px-1.5 rounded w-max text-[10px]">

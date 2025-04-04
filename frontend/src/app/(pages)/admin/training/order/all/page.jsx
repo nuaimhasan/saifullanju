@@ -172,6 +172,19 @@ export default function OrderTraining() {
                   <p>
                     {moment(order?.training?.time, "HH:mm").format("h:mm A")}
                   </p>
+                  <p>
+                    {order?.training?.discountPrice &&
+                    order?.training?.discountPrice > 0 ? (
+                      <>৳ {order?.training?.discountPrice}</>
+                    ) : (
+                      <>
+                        ৳{" "}
+                        {new Intl.NumberFormat("en-EN", {
+                          minimumFractionDigits: 0,
+                        }).format(order?.training?.price)}
+                      </>
+                    )}
+                  </p>
                 </td>
                 <td>
                   <p className="whitespace-nowrap">

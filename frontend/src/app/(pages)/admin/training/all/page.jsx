@@ -77,7 +77,26 @@ export default function AllTraining() {
                   />
                 </td>
                 <td>{training?.title}</td>
-                <td>{training?.price} BDT</td>
+                <td>
+                  {training?.discountPrice && training?.discountPrice > 0 ? (
+                    <>
+                      <del className="text-red-500 pr-2">
+                        ৳
+                        {new Intl.NumberFormat("en-EN", {
+                          minimumFractionDigits: 0,
+                        }).format(training?.price)}
+                      </del>
+                      <span>৳{training?.discountPrice}</span>
+                    </>
+                  ) : (
+                    <>
+                      ৳{" "}
+                      {new Intl.NumberFormat("en-EN", {
+                        minimumFractionDigits: 0,
+                      }).format(training?.price)}
+                    </>
+                  )}
+                </td>
                 <td>{moment(training?.startDate).format("DD MMM YYYY")}</td>
                 <td>{moment(training?.time, "HH:mm").format("h:mm A")}</td>
                 <td>

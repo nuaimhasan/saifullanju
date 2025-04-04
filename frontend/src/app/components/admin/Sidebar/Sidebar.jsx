@@ -155,7 +155,7 @@ const adminSidebarItems = [
 
 export default function Sidebar() {
   const { loggedUser } = useSelector((store) => store.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   const dispatch = useDispatch();
 

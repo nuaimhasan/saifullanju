@@ -13,9 +13,9 @@ export default function StudentLogin() {
   const router = useRouter();
 
   useEffect(() => {
-    if (loggedUser?.success && loggedUser?.data?.role == "user") {
+    if (loggedUser && loggedUser?.role == "user") {
       router.push("/user/dashboard");
-    } else if (loggedUser?.success && loggedUser?.data?.role == "admin") {
+    } else if (loggedUser && loggedUser?.role == "admin") {
       router.push("/admin/dashboard");
     }
   }, [loggedUser]);

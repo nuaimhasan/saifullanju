@@ -10,7 +10,7 @@ import PageViewClient from "@/app/hooks/PageViewClient";
 
 export default function MyTraining() {
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   const { data: orders } = useGetAllTrainingOrdersQuery({
     user: user?.email,
@@ -31,7 +31,7 @@ export default function MyTraining() {
               <div className="overflow-hidden">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${order?.training?.image}`}
-                  alt="taining"
+                  alt="training"
                   className="w-full h-32 rounded"
                   width={300}
                   height={200}

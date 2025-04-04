@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 export default function DashboardCard() {
   const { loggedUser } = useSelector((state) => state.user);
-  const email = loggedUser?.data?.email;
+  const email = loggedUser?.email;
 
   const { data: training } = useGetAllTrainingOrdersQuery({
     user: email,

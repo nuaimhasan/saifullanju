@@ -11,7 +11,7 @@ import { userLoggedIn } from "@/Redux/api/user/userSlice";
 export default function EditProfile() {
   const router = useRouter();
   const { loggedUser } = useSelector((state) => state.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   const dispatch = useDispatch();
 

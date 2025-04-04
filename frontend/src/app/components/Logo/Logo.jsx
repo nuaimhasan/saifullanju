@@ -9,6 +9,7 @@ export default function Logo() {
         className="w-8 h-8 rounded-full"
         width={50}
         height={50}
+        alt="logo"
       />
       <h2 className="text-2xl font-semibold">Saiful Lanju</h2>
     </Link>

@@ -42,16 +42,14 @@ export default function AdminHeader({ setSidebar }) {
             className="d_btn flex items-center gap-1"
           >
             <FaRegUserCircle className="text-lg" />
-            {loggedUser?.data?.name || "Admin"}
+            {loggedUser?.name || "Admin"}
           </button>
 
           {dropdown && (
             <div className="absolute right-0 top-[140%] z-50 min-w-52 rounded bg-base-100 p-2 shadow">
               <div className="border-b p-2">
-                <div className="text-sm font-semibold">
-                  {loggedUser?.data?.name}
-                </div>
-                <div className="text-sm">{loggedUser?.data?.email}</div>
+                <div className="text-sm font-semibold">{loggedUser?.name}</div>
+                <div className="text-sm">{loggedUser?.email}</div>
               </div>
 
               <ul>

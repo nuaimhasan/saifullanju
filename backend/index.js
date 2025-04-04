@@ -6,7 +6,11 @@ const port = process.env.PORT || 2501;
 const apiRoutes = require("./src/routes/index");
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:2500", "https://saifullanju.com"],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("uploads"));

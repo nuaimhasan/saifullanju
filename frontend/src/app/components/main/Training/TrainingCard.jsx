@@ -15,7 +15,7 @@ export default function TrainingCard({ training }) {
         >
           <Image
             src={`${process.env.NEXT_PUBLIC_BACKEND_URL}/${training?.image}`}
-            alt="taining"
+            alt="training"
             className="w-full h-48 sm:h-40"
             width={300}
             height={200}

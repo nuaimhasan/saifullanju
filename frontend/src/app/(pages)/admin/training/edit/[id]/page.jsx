@@ -51,6 +51,7 @@ export default function EditTraining() {
     const endDate = e.target.endDate.value;
     const time = e.target.time.value;
     const price = e.target.price.value;
+    const discountPrice = e.target.discountPrice.value;
     const sl = e.target.sl.value;
     const address = e.target.address.value;
 
@@ -61,6 +62,7 @@ export default function EditTraining() {
       time,
       description,
       price,
+      discountPrice,
       features,
       faqs,
       sl,
@@ -109,7 +111,7 @@ export default function EditTraining() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div>
-                <p>Training Fee</p>
+                <p>Original Fee</p>
                 <input
                   type="number"
                   name="price"
@@ -117,6 +119,17 @@ export default function EditTraining() {
                   defaultValue={training?.price}
                 />
               </div>
+
+              <div>
+                <p>Discount Fee</p>
+                <input
+                  type="number"
+                  name="discountPrice"
+                  required
+                  defaultValue={training?.discountPrice}
+                />
+              </div>
+
               <div>
                 <p>SL</p>
                 <input

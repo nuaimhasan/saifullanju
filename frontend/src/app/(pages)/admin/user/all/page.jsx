@@ -3,9 +3,11 @@ import Pagination from "@/app/components/Pagination/Pagination";
 import { useGetAllUsersQuery } from "@/Redux/api/user/studentApi";
 import { useState } from "react";
 import { BsFiletypeXlsx } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import * as XLSX from "xlsx";
 
 export default function AllUser() {
+  const { token } = useSelector((state) => state.user);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   let limit = 10;
@@ -15,8 +17,6 @@ export default function AllUser() {
 
   const handleDownloadExcel = async () => {
     setLoading(true);
-
-    const token = window.localStorage.getItem("token");
 
     // getData
     const res = await fetch(

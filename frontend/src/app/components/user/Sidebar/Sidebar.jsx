@@ -44,7 +44,7 @@ const adminSidebarItems = [
 
 export default function Sidebar({ setSidebar }) {
   const { loggedUser } = useSelector((store) => store.user);
-  const user = loggedUser?.data;
+  const user = loggedUser;
 
   return (
     <div className="flex h-full flex-col justify-between relative">

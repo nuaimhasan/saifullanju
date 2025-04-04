@@ -9,7 +9,7 @@ export default function ChangePassword() {
   const router = useRouter();
   const dispatch = useDispatch();
   const { loggedUser } = useSelector((store) => store.user);
-  const id = loggedUser?.data?._id;
+  const id = loggedUser?._id;
 
   const [updatePassword, { isLoading }] = useUpdatePasswordMutation();
 
