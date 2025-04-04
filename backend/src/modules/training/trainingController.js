@@ -56,9 +56,7 @@ exports.getAll = async (req, res) => {
     let query = {};
 
     if (active && active !== "undefined" && active !== "null") {
-      query = {
-        isActive: active,
-      };
+      query.isActive = active;
     }
 
     if (upcoming && upcoming == "true") {
@@ -71,9 +69,7 @@ exports.getAll = async (req, res) => {
       const nextDate = new Date(localToday);
       nextDate.setDate(nextDate.getDate() + 1);
 
-      query = {
-        startDate: { $gte: nextDate },
-      };
+      query.startDate = { $gte: nextDate };
     }
 
     const result = await Model.find(query).populate().skip(skip).limit(limit);

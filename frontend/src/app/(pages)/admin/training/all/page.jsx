@@ -1,5 +1,5 @@
 "use client";
-import { ImBin2 } from "react-icons/im";
+import { TbStatusChange } from "react-icons/tb";
 import {
   useGetAllTrainingQuery,
   useSoftDeleteTrainingMutation,
@@ -25,7 +25,7 @@ export default function AllTraining() {
 
   const handleDelete = async (id) => {
     const isConfirm = window.confirm(
-      "The record will not be deleted from the database, only the status will be changed."
+      "Are you want to change status this training?"
     );
     if (isConfirm) {
       const res = await softDeleteTraining(id);
@@ -92,12 +92,12 @@ export default function AllTraining() {
                   </p>
                 </td>
                 <td>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1">
                     <Link href={`/admin/training/edit/${training?._id}`}>
-                      <AiOutlineEdit className="text-lg hover:text-red-500" />
+                      <AiOutlineEdit className="text-lg hover:text-green-500" />
                     </Link>
                     <button onClick={() => handleDelete(training?._id)}>
-                      <ImBin2 className="hover:text-red-500" />
+                      <TbStatusChange className="text-xl hover:text-red-500" />
                     </button>
                   </div>
                 </td>
