@@ -125,7 +125,6 @@ export default function EditTraining() {
                 <input
                   type="number"
                   name="discountPrice"
-                  required
                   defaultValue={training?.discountPrice}
                 />
               </div>

@@ -41,11 +41,9 @@ const TrainingOrderSchema = new mongoose.Schema(
       },
       accountNb: {
         type: String,
-        required: true,
       },
       transactionId: {
         type: String,
-        required: true,
       },
       date: {
         type: Date,

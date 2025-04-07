@@ -47,14 +47,15 @@ export default function page() {
 
   const handlePyament = async () => {
     if (
-      !name ||
-      !email ||
-      !phone ||
-      !gender ||
-      !paymentMethod ||
-      !accountNb ||
-      !transactionId ||
-      !amount
+      training?.discountPrice !== 0 &&
+      (!name ||
+        !email ||
+        !phone ||
+        !gender ||
+        !paymentMethod ||
+        !accountNb ||
+        !transactionId ||
+        !amount)
     ) {
       return toast.error("Please fill up all the fields");
     }
@@ -124,17 +125,27 @@ export default function page() {
                     <div className="mt-4">
                       <div className="flex justify-between items-center">
                         <p className="text-sm text-neutral">Training Price</p>
-                        <p className="text-sm text-neutral">
+                        <p className="text-neutral">
                           {training?.discountPrice &&
                           training?.discountPrice > 0 ? (
                             <>
-                              <del className="ttext-red-500 pr-2">
+                              <del className="text-red-500 pr-2 text-sm">
                                 ৳
                                 {new Intl.NumberFormat("en-EN", {
                                   minimumFractionDigits: 0,
                                 }).format(training?.price)}
                               </del>
                               ৳ {training?.discountPrice}
+                            </>
+                          ) : training?.discountPrice == 0 ? (
+                            <>
+                              <del className="text-base text-red-500 pr-2">
+                                ৳{" "}
+                                {new Intl.NumberFormat("en-EN", {
+                                  minimumFractionDigits: 0,
+                                }).format(training?.price)}
+                              </del>
+                              <span className="text-green-500">Free</span>
                             </>
                           ) : (
                             <>
@@ -153,6 +164,10 @@ export default function page() {
                           {training?.discountPrice &&
                           training?.discountPrice > 0 ? (
                             <>৳ {training?.discountPrice}</>
+                          ) : training?.discountPrice == 0 ? (
+                            <>
+                              <span className="text-green-500">Free</span>
+                            </>
                           ) : (
                             <>
                               ৳{" "}
@@ -213,12 +228,14 @@ export default function page() {
 
               <div className="sticky top-12">
                 <div className="mt-4 bg-base-100 shadow p-4 rounded">
-                  <h2 className="font-semibold text-lg text-neutral">
-                    Payment Method
-                  </h2>
+                  {training?.discountPrice !== 0 && (
+                    <>
+                      <h2 className="font-semibold text-lg text-neutral">
+                        Payment Method
+                      </h2>
 
-                  <div className="flex flex-col gap-2 mt-4">
-                    {/* <div className="flex items-center ps-4 border border-gray-200 rounded">
+                      <div className="flex flex-col gap-2 mt-4">
+                        {/* <div className="flex items-center ps-4 border border-gray-200 rounded">
                     <input
                       id="ssl"
                       type="radio"
@@ -236,75 +253,81 @@ export default function page() {
                     </label>
                   </div> */}
 
-                    <div className="flex items-center ps-4 border border-gray-200 rounded">
-                      <input
-                        id="manualbKash"
-                        type="radio"
-                        value="manualbKash"
-                        name="bordered-radio"
-                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
-                        onChange={(e) => setPaymentMethod(e.target.value)}
-                        checked={paymentMethod === "manualbKash"}
-                      />
-                      <label
-                        htmlFor="manualbKash"
-                        className="w-full py-4 ms-2 text-sm font-medium text-gray-900 flex items-center justify-between gap-2"
-                      >
-                        <p>Manual bKash</p>
-                        <img src="/Bkash.png" alt="bKash" className="w-14" />
-                      </label>
-                    </div>
-                  </div>
+                        <div className="flex items-center ps-4 border border-gray-200 rounded">
+                          <input
+                            id="manualbKash"
+                            type="radio"
+                            value="manualbKash"
+                            name="bordered-radio"
+                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+                            onChange={(e) => setPaymentMethod(e.target.value)}
+                            checked={paymentMethod === "manualbKash"}
+                          />
+                          <label
+                            htmlFor="manualbKash"
+                            className="w-full py-4 ms-2 text-sm font-medium text-gray-900 flex items-center justify-between gap-2"
+                          >
+                            <p>Manual bKash</p>
+                            <img
+                              src="/Bkash.png"
+                              alt="bKash"
+                              className="w-14"
+                            />
+                          </label>
+                        </div>
+                      </div>
 
-                  <div className="mt-3 border rounded p-2 text-[13px]">
-                    <div className="grid sm:grid-cols-2 gap-2">
-                      <div>
-                        <p className="mb-1">Account No. *</p>
-                        <input
-                          type="text"
-                          onChange={(e) => setAccountNb(e.target.value)}
-                        />
+                      <div className="mt-3 border rounded p-2 text-[13px]">
+                        <div className="grid sm:grid-cols-2 gap-2">
+                          <div>
+                            <p className="mb-1">Account No. *</p>
+                            <input
+                              type="text"
+                              onChange={(e) => setAccountNb(e.target.value)}
+                            />
+                          </div>
+                          <div>
+                            <p className="mb-1">Transaction ID *</p>
+                            <input
+                              type="text"
+                              onChange={(e) => setTransactionId(e.target.value)}
+                            />
+                          </div>
+                          <div>
+                            <p className="mb-1">Amount *</p>
+                            <input
+                              type="number"
+                              onChange={(e) => setAmount(e.target.value)}
+                            />
+                          </div>
+                          <div>
+                            <p className="mb-1">Date</p>
+                            <input
+                              type="date"
+                              onChange={(e) => setDate(e.target.value)}
+                            />
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <p className="mb-1">Transaction ID *</p>
-                        <input
-                          type="text"
-                          onChange={(e) => setTransactionId(e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <p className="mb-1">Amount *</p>
-                        <input
-                          type="number"
-                          onChange={(e) => setAmount(e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <p className="mb-1">Date</p>
-                        <input
-                          type="date"
-                          onChange={(e) => setDate(e.target.value)}
-                        />
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="mt-4 pt-2 border-t flex justify-between items-center font-semibold">
-                    <p className="text-sm text-neutral">Total Payment:</p>
-                    <p className="text-sm text-neutral">
-                      {training?.discountPrice &&
-                      training?.discountPrice > 0 ? (
-                        <>৳ {training?.discountPrice}</>
-                      ) : (
-                        <>
-                          ৳{" "}
-                          {new Intl.NumberFormat("en-EN", {
-                            minimumFractionDigits: 0,
-                          }).format(training?.price)}
-                        </>
-                      )}
-                    </p>
-                  </div>
+                      <div className="mt-4 pt-2 border-t flex justify-between items-center font-semibold">
+                        <p className="text-sm text-neutral">Total Payment:</p>
+                        <p className="text-sm text-neutral">
+                          {training?.discountPrice &&
+                          training?.discountPrice > 0 ? (
+                            <>৳ {training?.discountPrice}</>
+                          ) : (
+                            <>
+                              ৳{" "}
+                              {new Intl.NumberFormat("en-EN", {
+                                minimumFractionDigits: 0,
+                              }).format(training?.price)}
+                            </>
+                          )}
+                        </p>
+                      </div>
+                    </>
+                  )}
 
                   <div className="mt-4">
                     <button

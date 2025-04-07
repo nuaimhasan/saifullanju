@@ -15,11 +15,10 @@ export default function AllTraining() {
   const [currentPage, setCurrentPage] = useState(1);
   let limit = 10;
 
-  const { data } = useGetAllTrainingQuery({
-    page: currentPage,
-    limit,
-  });
+  const { data } = useGetAllTrainingQuery({ page: currentPage, limit });
   const trainings = data?.data;
+
+  console.log(trainings);
 
   const [softDeleteTraining] = useSoftDeleteTrainingMutation();
 
@@ -87,6 +86,16 @@ export default function AllTraining() {
                         }).format(training?.price)}
                       </del>
                       <span>৳{training?.discountPrice}</span>
+                    </>
+                  ) : training?.discountPrice === 0 ? (
+                    <>
+                      <del className="text-red-500 pr-2">
+                        ৳
+                        {new Intl.NumberFormat("en-EN", {
+                          minimumFractionDigits: 0,
+                        }).format(training?.price)}
+                      </del>
+                      <span>FREE</span>
                     </>
                   ) : (
                     <>

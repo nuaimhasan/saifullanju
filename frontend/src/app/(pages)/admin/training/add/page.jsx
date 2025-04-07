@@ -94,7 +94,7 @@ export default function AddTraining() {
               </div>
               <div>
                 <p>Discount Fee</p>
-                <input type="number" name="discountPrice" required />
+                <input type="number" name="discountPrice" />
               </div>
               <div>
                 <p>SL</p>

@@ -16,6 +16,8 @@ export default async function TrainingDetails({ params }) {
   const data = await useGetData(`training/slug/${slug}`);
   const training = data?.data;
 
+  console.log(training);
+
   return (
     <>
       <section className="pt-8">
@@ -50,6 +52,16 @@ export default async function TrainingDetails({ params }) {
                         }).format(training?.price)}
                       </del>
                       {training?.discountPrice}
+                    </>
+                  ) : training?.discountPrice == 0 ? (
+                    <>
+                      <del className="text-base text-red-500 pr-2">
+                        ৳{" "}
+                        {new Intl.NumberFormat("en-EN", {
+                          minimumFractionDigits: 0,
+                        }).format(training?.price)}
+                      </del>
+                      <span className="text-green-500">Free</span>
                     </>
                   ) : (
                     <>
@@ -147,6 +159,16 @@ export default async function TrainingDetails({ params }) {
                         }).format(training?.price)}
                       </del>
                       ৳ {training?.discountPrice}
+                    </>
+                  ) : training?.discountPrice == 0 ? (
+                    <>
+                      <del className="text-base text-red-500 pr-2">
+                        ৳{" "}
+                        {new Intl.NumberFormat("en-EN", {
+                          minimumFractionDigits: 0,
+                        }).format(training?.price)}
+                      </del>
+                      <span className="text-green-500">Free</span>
                     </>
                   ) : (
                     <>
