@@ -18,7 +18,7 @@ export default async function Training() {
       <PageViewClient title="Training" url="/training" />
       <section className="py-5">
         <div className="container">
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
             {AllTraining?.map((training) => (
               <TrainingCard key={training._id} training={training} />
             ))}

@@ -13,7 +13,7 @@ export default function Faq({ faq, i }) {
   };
 
   return (
-    <div className="mb-2 border rounded">
+    <div className="mb-2 border rounded text-lg">
       <button
         onClick={() => handelToggleFAQ(i)}
         className="w-full flex justify-between items-center p-4 font-medium text-neutral rounded bg-gray-50"
@@ -30,7 +30,7 @@ export default function Faq({ faq, i }) {
 
       {/* Content/Ans */}
       <div
-        className={`text-justify text-neutral duration-500 faq-content ${
+        className={`text-justify text-neutral/90 duration-500 faq-content ${
           toggleFAQ === i && "activeFAQ"
         }`}
       >

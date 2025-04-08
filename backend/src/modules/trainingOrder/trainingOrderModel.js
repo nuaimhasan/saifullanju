@@ -41,9 +41,11 @@ const TrainingOrderSchema = new mongoose.Schema(
       },
       accountNb: {
         type: String,
+        default: "N/A",
       },
       transactionId: {
         type: String,
+        default: "N/A",
       },
       date: {
         type: Date,

@@ -176,6 +176,8 @@ export default function OrderTraining() {
                     {order?.training?.discountPrice &&
                     order?.training?.discountPrice > 0 ? (
                       <>৳ {order?.training?.discountPrice}</>
+                    ) : order?.training?.discountPrice == 0 ? (
+                      <p className="text-green-500">Free</p>
                     ) : (
                       <>
                         ৳{" "}

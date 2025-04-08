@@ -16,8 +16,6 @@ export default async function TrainingDetails({ params }) {
   const data = await useGetData(`training/slug/${slug}`);
   const training = data?.data;
 
-  console.log(training);
-
   return (
     <>
       <section className="pt-8">
@@ -93,7 +91,9 @@ export default async function TrainingDetails({ params }) {
           </div>
 
           <div className="mt-10 bg-gray-800 text-base-100 rounded-xl p-6 flex flex-col gap-4 items-center justify-center">
-            <h2 className="text-3xl font-semibold">{training?.title}</h2>
+            <h2 className="text-3xl text-center font-semibold">
+              {training?.title}
+            </h2>
             <div className="w-max px-3 py-1.5 rounded-lg bg-base-100 text-primary font-medium flex items-center gap-4 text-[13px]">
               <p className="flex items-center gap-1.5">
                 <BsCalendarDate className="-mt-px" />{" "}

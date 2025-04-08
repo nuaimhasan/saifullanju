@@ -21,7 +21,7 @@ export default async function Training() {
           </h2>
         </div>
 
-        <div className="bg-base-100 shadow rounded sm:p-4 sm:border mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4">
+        <div className="bg-base-100 shadow rounded sm:p-4 sm:border mt-4 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
           {AllTraining?.map((training) => (
             <TrainingCard key={training._id} training={training} />
           ))}

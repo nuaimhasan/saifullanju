@@ -39,6 +39,36 @@ export default function TrainingCard({ training }) {
               {training?.title}
             </h3>
           </Link>
+          <h4 className="text-sm mt-2">
+            {training?.discountPrice && training?.discountPrice > 0 ? (
+              <>
+                <del className="text-base text-red-500 pr-2">
+                  ৳{" "}
+                  {new Intl.NumberFormat("en-EN", {
+                    minimumFractionDigits: 0,
+                  }).format(training?.price)}
+                </del>
+                ৳ {training?.discountPrice}
+              </>
+            ) : training?.discountPrice == 0 ? (
+              <>
+                <del className="text-red-500 pr-2">
+                  ৳{" "}
+                  {new Intl.NumberFormat("en-EN", {
+                    minimumFractionDigits: 0,
+                  }).format(training?.price)}
+                </del>
+                <span className="text-green-500">Free</span>
+              </>
+            ) : (
+              <>
+                ৳{" "}
+                {new Intl.NumberFormat("en-EN", {
+                  minimumFractionDigits: 0,
+                }).format(training?.price)}
+              </>
+            )}
+          </h4>
           <p className="mt-2 text-sm text-neutral/80">
             Date: {moment(training?.startDate).format("DD MMM YYYY")}
           </p>

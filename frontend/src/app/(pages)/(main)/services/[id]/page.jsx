@@ -2,6 +2,7 @@ import { useGetData } from "@/Hook/useGetData";
 import Image from "next/image";
 import parser from "html-react-parser";
 import PageViewClient from "@/app/hooks/PageViewClient";
+import Link from "next/link";
 
 export default async function ServiceDetails({ params }) {
   const { id } = await params;
@@ -27,9 +28,13 @@ export default async function ServiceDetails({ params }) {
             {service?.title}
           </h2>
 
-          <p className="mt-3 text-sm text-neutral-content">
+          <div className="mt-3 text-sm text-neutral-content">
             {service?.description && parser(service?.description)}
-          </p>
+          </div>
+
+          <Link href="/contact" className="inline-block w-max mt-4 primary_btn">
+            Contact Us
+          </Link>
         </div>
       </section>
     </>
